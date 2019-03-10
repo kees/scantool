@@ -65,28 +65,28 @@ static void init()
    set_uformat(U_ASCII);
    
    /* initialize hardware */
-   write_log("\nInitializing Allegro... ");
+   write_log("Initializing Allegro... ");
    allegro_init();
-   write_log("OK");
+   write_log("OK\n");
    
    set_window_title(WINDOW_TITLE);
    
-   write_log("\nInstalling Timers... ");
+   write_log("Installing Timers... ");
    if (install_timer() != 0)
    {
-      write_log("Error!");
+      write_log("Error!\n");
       fatal_error("Error installing timers");
    }
-   write_log("OK");
-   write_log("\nInstalling Keyboard... ");
+   write_log("OK\n");
+   write_log("Installing Keyboard... ");
    install_keyboard();
-   write_log("OK");
-   write_log("\nInstalling Mouse... ");
+   write_log("OK\n");
+   write_log("Installing Mouse... ");
    install_mouse();
-   write_log("OK");
+   write_log("OK\n");
 
    /* load options from file, the defaults will be automatically substituted if file does not exist */
-   write_log("\nLoading Preferences... ");
+   write_log("Loading Preferences... ");
    set_config_file(options_file_name);
    /* if config file doesn't exist or is of an incorrect version */
    if (strcmp(get_config_string(NULL, "version", ""), SCANTOOL_VERSION_STR) != 0)
@@ -100,15 +100,15 @@ static void init()
    }
    else
       load_program_options();
-   write_log("OK");
+   write_log("OK\n");
 
    display_mode |= FULLSCREEN_MODE_SUPPORTED;
    
-   write_log("\nTrying Windowed Graphics Mode... ");
+   write_log("Trying Windowed Graphics Mode... ");
    if (set_gfx_mode(GFX_AUTODETECT_WINDOWED, 640, 480, 0, 0) == 0)
    {
       display_mode |= WINDOWED_MODE_SUPPORTED;
-      write_log("OK");
+      write_log("OK\n");
    }
    else
    {
@@ -118,11 +118,11 @@ static void init()
 
    if (!(display_mode & WINDOWED_MODE_SET))
    {
-      write_log("\nTrying Full Screen Graphics Mode... ");
+      write_log("Trying Full Screen Graphics Mode... ");
       if (set_gfx_mode(GFX_AUTODETECT_FULLSCREEN, 640, 480, 0, 0) == 0)
       {
          display_mode |= FULLSCREEN_MODE_SUPPORTED;
-         write_log("OK");
+         write_log("OK\n");
       }
       else
       {
@@ -139,17 +139,17 @@ static void init()
       display_mode &= WINDOWED_MODE_SET;
    }
    
-   write_log("\nLoading Data File... ");
+   write_log("Loading Data File... ");
    packfile_password(PASSWORD);
    datafile = load_datafile(data_file_name);
    packfile_password(NULL);
    if (datafile == NULL)
    {
-      sprintf(temp_buf, "Error loading %s!", data_file_name);
+      sprintf(temp_buf, "Error loading %s!\n", data_file_name);
       write_log(temp_buf);
       fatal_error(temp_buf);
    }
-   write_log("OK");
+   write_log("OK\n");
 
    set_pallete(datafile[MAIN_PALETTE].dat);
    font = datafile[ARIAL12_FONT].dat;
@@ -158,26 +158,26 @@ static void init()
    gui_mg_color = C_GRAY;   // set the disabled color
    set_mouse_sprite(NULL); // make mouse use current palette
 
-   write_log("\nInitializing Serial Module... ");
+   write_log("Initializing Serial Module... ");
    serial_module_init();
-   write_log("OK");
+   write_log("OK\n");
 
-   sprintf(temp_buf, "\nOpening COM%i... ", comport.number + 1);
+   sprintf(temp_buf, "Opening COM%i... ", comport.number + 1);
    write_log(temp_buf);
    /* try opening comport (comport.status will be set) */
    open_comport();
    switch (comport.status)
    {
       case READY:
-         write_log("OK");
+         write_log("OK\n");
          break;
 
       case NOT_OPEN:
-         write_log("Error!");
+         write_log("Error!\n");
          break;
          
       default:
-         write_log("Unknown Status");
+         write_log("Unknown Status\n");
          break;
    }
 }
@@ -187,15 +187,15 @@ static void shut_down()
 {
    //clean up
    flush_config_file();
-   write_log("\nShutting Down Serial Module... ");
+   write_log("Shutting Down Serial Module... ");
    serial_module_shutdown();
-   write_log("OK");
-   write_log("\nUnloading Data File... ");
+   write_log("OK\n");
+   write_log("Unloading Data File... ");
    unload_datafile(datafile);
-   write_log("OK");
-   write_log("\nShutting Down Allegro... ");
+   write_log("OK\n");
+   write_log("Shutting Down Allegro... ");
    allegro_exit();
-   write_log("OK");
+   write_log("OK\n");
 }
 
 
@@ -211,23 +211,24 @@ int main()
    strcpy(log_file_name, "log.txt");
    remove(log_file_name);
    write_log(temp_buf);
+   write_log("\n");
 #ifdef LOG_COMMS
    strcpy(comm_log_file_name, "comm_log.txt");
    remove(comm_log_file_name);
    write_comm_log("START_TIME", temp_buf);
 #endif
 
-   sprintf(temp_buf, "\nVersion: %s for %s", SCANTOOL_VERSION_STR, SCANTOOL_PLATFORM_STR);
+   sprintf(temp_buf, "Version: %s for %s\n", SCANTOOL_VERSION_STR, SCANTOOL_PLATFORM_STR);
    write_log(temp_buf);
 
-   write_log("\n\nInitializing All Modules...\n---------------------------");
+   write_log("\nInitializing All Modules...\n---------------------------\n");
    init(); // initialize everything
 
-   write_log("\n\nDisplaying Main Menu...\n-----------------------");
+   write_log("\nDisplaying Main Menu...\n-----------------------\n");
    display_main_menu(); // dislpay main menu
-   write_log("\nMain Menu Closed");
+   write_log("Main Menu Closed\n");
 
-   write_log("\n\nShutting Down All Modules...\n----------------------------");
+   write_log("\nShutting Down All Modules...\n----------------------------\n");
    shut_down(); // shut down
 
    return EXIT_SUCCESS;
