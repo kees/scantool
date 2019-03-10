@@ -170,11 +170,11 @@ int open_comport()
       return -1;
    }
 #elif TERMIOS
-    char tmp[16];
+    char tmp[54];
     if( comport.number < 100 )
-        sprintf(tmp,"/dev/ttyS%d",comport.number);
+        snprintf(tmp, sizeof(tmp), "/dev/ttyS%d", comport.number);
     else
-        sprintf(tmp,"/dev/ttyUSB%d",comport.number-100);
+        snprintf(tmp, sizeof(tmp), "/dev/ttyUSB%d", comport.number-100);
     fdtty = open( tmp, O_RDWR | O_NOCTTY );
     if (fdtty <0) { return(-1); }
 

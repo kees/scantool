@@ -1,4 +1,4 @@
-scantool (1.22-1) unstable; urgency=medium
+scantool (2.0-1) unstable; urgency=medium
 
   * Switch source package to new home, which adds all outstanding
     patches.
