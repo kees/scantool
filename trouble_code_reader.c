@@ -1248,7 +1248,10 @@ void swap_codes(TROUBLE_CODE *code1, TROUBLE_CODE *code2)
 {
    char temp_str[256];
    int temp_int;
-   
+
+   if (code1 == code2)
+       return;
+
    temp_int = code1->pending;
    strcpy(temp_str, code1->code);
    code1->pending = code2->pending;
