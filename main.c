@@ -1,10 +1,11 @@
-#include <string.h>
 #include "globals.h"
 #include "main_menu.h"
 #include "error_handlers.h"
 #include "options.h"
 #include "serial.h"
 #include "version.h"
+
+#include <string.h>
 
 #if (defined ALLEGRO_DOS) || (defined ALLEGRO_STATICLINK)
 // Define color depths used
@@ -20,11 +21,12 @@ void write_log(const char *log_string)
 {
    FILE *logfile = NULL;
    
-   logfile = fopen(log_file_name, "a");
+   logfile = stderr;
    if (logfile == NULL)
       fatal_error("Could not open log file for writing!");
-   fprintf(logfile, log_string);
-   fclose(logfile);
+   fprintf(logfile, "%s", log_string);
+   if (logfile != stderr)
+      fclose(logfile);
 }
 
 
@@ -49,9 +51,12 @@ static void init()
    is_not_genuine_scan_tool = FALSE;
    
    /* initialize some varaibles with default values */
-   strcpy(options_file_name, "scantool.cfg");
-   strcpy(data_file_name, "scantool.dat");
-   strcpy(code_defs_file_name, "codes.dat");
+   if (asprintf(&options_file_name, "%s/.scantoolrc", getenv("HOME")) < 0) {
+      perror("asprintf");
+      exit(1);
+   }
+   data_file_name = strdup("/usr/share/scantool/scantool.dat");
+   code_defs_file_name = strdup("/usr/share/scantool/codes.dat");
    
    datafile = NULL;
    comport.status = NOT_OPEN;

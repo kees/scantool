@@ -17,7 +17,7 @@ void fatal_error(char *msg)
    strcat(temp_buf, "\n\t- CPU type/speed, i.e. \"Pentium 100Mhz\"");
    strcat(temp_buf, "\n\t- OS, i.e. \"Windows 95\"");
    strcat(temp_buf, "\n\t- Total amount of RAM installed, i.e. \"4Mb\"\n\n");
-   allegro_message(temp_buf);
+   allegro_message("%s", temp_buf);
    
    exit(EXIT_FAILURE);
 }

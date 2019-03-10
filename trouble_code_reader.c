@@ -1,12 +1,13 @@
-#include <string.h>
-#include <ctype.h>
-#include <math.h>
 #include "globals.h"
 #include "serial.h"
 #include "options.h"
 #include "custom_gui.h"
 #include "error_handlers.h"
 #include "trouble_code_reader.h"
+
+#include <string.h>
+#include <ctype.h>
+#include <math.h>
 
 #define MSG_READ_CODES    MSG_USER
 #define MSG_CLEAR_CODES   MSG_USER+1
@@ -1221,7 +1222,7 @@ PACKFILE *file_handle(char code_letter)
 {
    static PACKFILE *file = NULL;
    static char current_code_letter = 0;
-   char file_name[30];
+   char *file_name;
    
    if (code_letter == 0)
    {
@@ -1238,9 +1239,13 @@ PACKFILE *file_handle(char code_letter)
          file = NULL;
       }
    
-      sprintf(file_name, "%s#%ccodes", code_defs_file_name, tolower(code_letter));
+      if (asprintf(&file_name, "%s#%ccodes", code_defs_file_name, tolower(code_letter)) < 0) {
+          perror("asprintf");
+          exit(1);
+      }
       packfile_password(PASSWORD);
       file = pack_fopen(file_name, F_READ_PACKED);
+      free(file_name);
       packfile_password(NULL);
       current_code_letter = code_letter;
    }

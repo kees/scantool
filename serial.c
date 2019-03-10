@@ -140,6 +140,11 @@ int open_comport()
    }
 #else
    com_port = comm_port_init(comport.number);
+   if (!com_port) {
+      write_log(szDZCommErr);
+      comport.status = NOT_OPEN;
+      return -1;
+   }
    comm_port_set_baud_rate(com_port, comport.baud_rate);
    comm_port_set_parity(com_port, NO_PARITY);
    comm_port_set_data_bits(com_port, BITS_8);
@@ -147,6 +152,7 @@ int open_comport()
    comm_port_set_flow_control(com_port, NO_CONTROL);
    if (comm_port_install_handler(com_port) != 1)
    {
+      write_log(szDZCommErr);
       comport.status = NOT_OPEN; //port was not open
       return -1; // return error
    }

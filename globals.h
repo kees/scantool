@@ -1,6 +1,7 @@
 #ifndef GLOBALS_H
 #define GLOBALS_H
 
+#define _GNU_SOURCE
 #include <stdio.h>
 #include <allegro.h>
 #include "resource.h"
@@ -43,9 +44,9 @@ int system_of_measurements;
 int display_mode;
 
 // File names
-char options_file_name[20];
-char data_file_name[20];
-char code_defs_file_name[20];
+char *options_file_name;
+char *data_file_name;
+char *code_defs_file_name;
 char log_file_name[20];
 #ifdef LOG_COMMS
 char comm_log_file_name[20];

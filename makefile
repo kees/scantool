@@ -30,6 +30,12 @@ else
    EXT = .exe
 endif
 
+DEBIAN?=1
+ifdef DEBIAN
+   # This really should be $(shell allegro-config --libs) but that's broken?
+   LIBS += -lX11 -lXext -lXpm -lXcursor -lXxf86vm -ldl -lpthread -lm
+   EXT =
+endif
 
 ifndef NOWERROR
    CFLAGS += -Werror
@@ -40,13 +46,13 @@ ifdef DEFINES
 endif
 
 OBJ += main.o main_menu.o serial.o options.o sensors.o trouble_code_reader.o custom_gui.o error_handlers.o about.o reset.o
-BIN = ScanTool.exe
+BIN = scantool$(EXT)
 
 ifdef MINGDIR
 endif
 
 $(BIN): $(OBJ)
-	$(CC) $(CFLAGS) -o $(BIN) $(OBJ) $(LIBS)
+	$(CC) $(CFLAGS) -o $(BIN) $(OBJ) $(LDFLAGS) $(LIBS)
 
 ifdef MINGDIR
 release:
@@ -59,7 +65,7 @@ endif
 all: $(BIN)
 
 clean:
-	rm -f $(OBJ)
+	rm -f $(OBJ) $(BIN)
 
 veryclean: clean
 	rm -f $(BIN)
