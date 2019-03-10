@@ -50,6 +50,14 @@ typedef struct TROUBLE_CODE
    struct TROUBLE_CODE *next;
 } TROUBLE_CODE;
 
+struct code_t
+{
+    char *origin;
+    char *description;
+    char *solution;
+    struct code_t *next;
+};
+
 static char mfr_code_description[] = "Manufacturer-specific code.  Please refer to your vehicle's service manual for more information";
 static char mfr_pending_code_description[] = "[Pending]\nManufacturer-specific code.  Please refer to your vehicle's service manual for more information";
 static char code_no_description[] = "";
@@ -972,14 +980,185 @@ int handle_read_codes(char *vehicle_response, int pending)
 }
 
 
+void free_code(struct code_t *code)
+{
+    if (!code)
+        return;
+    if (code->origin)
+        free(code->origin);
+    if (code->description)
+        free(code->description);
+    if (code->solution)
+        free(code->solution);
+}
+
+
+struct code_t *new_code(void)
+{
+    struct code_t *code;
+
+    code = calloc(1, sizeof(*code));
+
+    return code;
+}
+
+
+struct code_t *find_trouble_code(char *dtc, int pending)
+{
+   struct code_t *head = NULL;
+   struct code_t *tail = NULL;
+   struct code_t *code = NULL;
+   char character;
+   int j;
+   char temp_buf[1024];
+   PACKFILE *code_def_file;
+
+   // pass the letter (B, C, P, or U) to file_handle, which returns the file handle
+   // if we reached EOF, or the file does not exist, go to the next DTC
+   if ((code_def_file = file_handle(dtc[0])) == NULL)
+      return NULL;
+
+    while (TRUE) {
+        j = 0;
+
+        // copy DTC from file to temp_buf
+        while (((character = pack_getc(code_def_file)) != FIELD_DELIMITER) && (character != RECORD_DELIMITER) && (character != EOF))
+        {
+           temp_buf[j] = character;
+           j++;
+        }
+        temp_buf[j] = '\0';
+
+        if (character == EOF) // reached end of file, break out of while()
+           break;
+
+        if (strncmp(dtc, temp_buf, 5) == 0) // if we found the code,
+        {
+           code = new_code();
+           if (!head)
+               head = tail = code;
+           else {
+               tail->next = code;
+               tail = code;
+           }
+
+           // extract origin
+           if (character == RECORD_DELIMITER)  // reached end of record, no description or solution,
+              continue;                        // break out of while(), advance to next code
+           j = 0;
+           while (((character = pack_getc(code_def_file)) != FIELD_DELIMITER) && (character != RECORD_DELIMITER) && (character != EOF))
+           {
+              temp_buf[j] = character;
+              j++;
+           }
+           temp_buf[j] = '\0';  // terminate string
+           if (j > 0)
+           {
+              if (!(code->origin = strdup(temp_buf)))
+              {
+                 sprintf(temp_error_buf, "Could not allocate enough memory for trouble code origin [%s]", dtc);
+                 fatal_error(temp_error_buf);
+              }
+           }
+
+           // extract description
+           if (character != FIELD_DELIMITER)  // reached end of record, no description or solution,
+              continue;                        // break out of while(), advance to next code
+           j = 0;
+           while (((character = pack_getc(code_def_file)) != FIELD_DELIMITER) && (character != RECORD_DELIMITER) && (character != EOF))
+           {
+              temp_buf[j] = character;
+              j++;
+           }
+           temp_buf[j] = '\0';  // terminate string
+           if (j > 0)
+           {
+              if (!(code->description = (char *)malloc(sizeof(char)*(j + 1 + ((pending) ? 10 : 0)))))
+              {
+                 sprintf(temp_error_buf, "Could not allocate enough memory for trouble code description [%s]", dtc);
+                 fatal_error(temp_error_buf);
+              }
+              if (pending)
+              {
+                 strcpy(code->description, "[Pending]\n");
+                 strcpy(code->description + 10, temp_buf);  // copy description from temp_buf
+              }
+              else
+                 strcpy(code->description, temp_buf);  // copy description from temp_buf
+           }
+
+           // extract solution
+           if (character != FIELD_DELIMITER)
+              continue;
+           j = 0;
+           while (((character = pack_getc(code_def_file)) != RECORD_DELIMITER) && (character != EOF))
+           {
+              temp_buf[j] = character;
+              j++;
+           }
+           temp_buf[j] = '\0';   // terminate string
+           if (j > 0)
+           {
+              if (!(code->solution = strdup(temp_buf)))
+              {
+                 sprintf(temp_error_buf, "Could not allocate enough memory for trouble code solution [%s]", dtc);
+                 fatal_error(temp_error_buf);
+              }
+           }
+        }
+        else
+        {
+           // skip to next record
+           while (((character = pack_getc(code_def_file)) != RECORD_DELIMITER) && (character != EOF));
+
+           if (character == EOF)
+              break;   // break out of while(TRUE);
+        }
+    }
+    file_handle(0); // close the code definition file if it's still open
+
+    return head;
+}
+
+#define CONCAT_FIELD(FIELD) do { \
+    if (code->FIELD) { \
+        int length = strlen(code->FIELD); \
+        if (trouble->FIELD) { \
+            char *original = trouble->FIELD; \
+            trouble->FIELD = malloc(strlen(original) + 2 + prefix_len + length + 1); \
+            sprintf(trouble->FIELD, "%s\n\n%s%s", original, prefix, code->FIELD); \
+        } else { \
+            trouble->FIELD = malloc(prefix_len + length + 1); \
+            sprintf(trouble->FIELD, "%s%s", prefix, code->FIELD); \
+        } \
+    } \
+} while (0)
+
+void concat_code(TROUBLE_CODE *trouble, struct code_t *code)
+{
+    char *prefix = "";
+    int prefix_len = 0;
+
+    if (code->origin && code->origin[0]) {
+        if (asprintf(&prefix, "[%s] ", code->origin) < 0) {
+           perror("asprintf");
+           exit(1);
+        }
+        prefix_len = strlen(prefix);
+    }
+
+    CONCAT_FIELD(description);
+    CONCAT_FIELD(solution);
+
+    if (prefix_len)
+        free(prefix);
+}
+
 void populate_trouble_codes_list()
 {
-   char character;
    int i, j, min;
-   char temp_buf[1024];
    TROUBLE_CODE *trouble_code;
    int count = get_number_of_codes();
-   PACKFILE *code_def_file;
 
    if (count == 0)
       return;
@@ -994,93 +1173,30 @@ void populate_trouble_codes_list()
 
       swap_codes(get_trouble_code(i), get_trouble_code(min));
    }
-   
+
    for (trouble_code = trouble_codes; trouble_code; trouble_code = trouble_code->next)   // search for descriptions and solutions
    {
-      // pass the letter (B, C, P, or U) to file_handle, which returns the file handle
-      // if we reached EOF, or the file does not exist, go to the next DTC
-      if ((code_def_file = file_handle(trouble_code->code[0])) == NULL)
-         continue;
+        struct code_t *head;
+        int count=0;
 
-      while (TRUE)
-      {
-         j = 0;
+        for (head = find_trouble_code(trouble_code->code, trouble_code->pending); head; /* */ )
+        {
+            struct code_t *code = head;
+            head = code->next;
 
-         // copy DTC from file to temp_buf
-         while (((character = pack_getc(code_def_file)) != FIELD_DELIMITER) && (character != RECORD_DELIMITER) && (character != EOF))
-         {
-            temp_buf[j] = character;
-            j++;
-         }
-         temp_buf[j] = '\0';
-
-         if (character == EOF) // reached end of file, break out of while()
-            break;             // advance to next code
-
-         if (strncmp(trouble_code->code, temp_buf, 5) == 0) // if we found the code,
-         {
-            if (character == RECORD_DELIMITER)  // reached end of record, no description or solution,
-               break;                        // break out of while(), advance to next code
-
-            j = 0;
-
-            //copy description from file to temp_buf
-            while (((character = pack_getc(code_def_file)) != FIELD_DELIMITER) && (character != RECORD_DELIMITER) && (character != EOF))
-            {
-               temp_buf[j] = character;
-               j++;
+            /* If the only description is from the Generic list, don't mention "Generic". */
+            if (!trouble_code->description && !head && code->origin && !strcmp(code->origin, "Generic")) {
+                free(code->origin);
+                code->origin = NULL;
             }
-            temp_buf[j] = '\0';  // terminate string
-            if (j > 0)
-            {
-               if (!(trouble_code->description = (char *)malloc(sizeof(char)*(j + 1 + ((trouble_code->pending) ? 10 : 0)))))
-               {
-                  sprintf(temp_error_buf, "Could not allocate enough memory for trouble code description [%i]", count);
-                  fatal_error(temp_error_buf);
-               }
-               if (trouble_code->pending)
-               {
-                  strcpy(trouble_code->description, "[Pending]\n");
-                  strcpy(trouble_code->description + 10, temp_buf);  // copy description from temp_buf
-               }
-               else
-                  strcpy(trouble_code->description, temp_buf);  // copy description from temp_buf
-            }
+            concat_code(trouble_code, code);
+            free_code(code);
 
-            if (character == FIELD_DELIMITER)   // if we have solution,
-            {
-               j = 0;
-
-               // copy solution from file to temp_buf
-               while (((character = pack_getc(code_def_file)) != RECORD_DELIMITER) && (character != EOF))
-               {
-                  temp_buf[j] = character;
-                  j++;
-               }
-               temp_buf[j] = '\0';   // terminate string
-               if (j > 0)
-               {
-                  if (!(trouble_code->solution = (char *)malloc(sizeof(char)*(j+1))))
-                  {
-                     sprintf(temp_error_buf, "Could not allocate enough memory for trouble code solution [%i]", count);
-                     fatal_error(temp_error_buf);
-                  }
-                  strcpy(trouble_code->solution, temp_buf);  // copy solution from temp_buf
-               }
-            }
-            break;  // break out of while(TRUE)
-         }
-         else
-         {
-            // skip to next record
-            while (((character = pack_getc(code_def_file)) != RECORD_DELIMITER) && (character != EOF));
-
-            if (character == EOF)
-               break;   // break out of while(TRUE), advance to next code
-         }
-      } // end of while(TRUE)
-   } // end of for() loop
-   file_handle(0); // close the code definition file if it's still open
+            count++;
+            if (count > 50)
+                break;
+      }
+   }
 }
 
 
