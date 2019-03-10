@@ -1,0 +1,44 @@
+Format: http://dep.debian.net/deps/dep5
+Upstream-Name: ScanTool.net
+Source: http://www.scantool.net/downloads/archive/diagnostic-software/
+
+Files: *
+Copyright: 2010 ScanTool.net, LLC
+License: GPL-2+
+
+Files: dzcomm/*
+Copyright: 1997-1998 Dim Zegebart, Moscow, Russia
+           1999-2003 Neil Townsend, Oxford, England <neil@users.sourceforge.net>
+License: gift-ware
+ Dzcomm is gift-ware. It was created by a number of people working in
+ cooperation, and is given to you freely as a gift. You may use, modify,
+ redistribute, and generally hack it about in any way you like, and you do
+ not have to give us anything in return. However, if you like this product
+ you are encouraged to thank us by making a return gift to the dzcomm
+ community. This could be by writing an add-on package, providing a useful
+ bug report, making an improvement to the library, or perhaps just
+ releasing the sources of your program so that other people can learn from
+ them. If you redistribute parts of this code or make something using it,
+ it would be nice if you mentioned dzcomm somewhere in the credits, but you
+ are not required to do this. We trust you not to abuse our generosity.
+
+Files: debian/*
+Copyright: 2011 Kees Cook <kees@debian.org>
+License: GPL-2+
+
+License: GPL-2+
+ This package is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; either version 2 of the License, or
+ (at your option) any later version.
+ .
+ This package is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ .
+ You should have received a copy of the GNU General Public License
+ along with this program. If not, see <http://www.gnu.org/licenses/>
+ .
+ On Debian systems, the complete text of the GNU General
+ Public License version 2 can be found in "/usr/share/common-licenses/GPL-2".

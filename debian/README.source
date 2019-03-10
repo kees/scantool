@@ -1,0 +1,35 @@
+Both the scantool and dzcomm library were repacked from the upstream ZIP
+files. When unpacking dzcomm, the "-a" unzip flags was used to fix text EOL
+markers, since there are several shell scripts that would not run without
+this change and providing a quilt patch to fix EOL markings would be crazy.
+When repacking scantool, the "listports.{c,h}" files were removed since they
+are non-free and not needed for the POSIX build.
+
+The Allegro .dat files are just archives, like Tar.
+
+The "scantool" data file contains resources for running the UI:
+
+$ dat -l scantool.dat
+Reading scantool.dat
+- BMP  - ABOUT1_BMP                   - bitmap (207x57, 8 bit)
+- BMP  - ABOUT2_BMP                   - bitmap (207x57, 8 bit)
+- BMP  - ABOUT3_BMP                   - bitmap (207x57, 8 bit)
+...
+
+The "codes" data file contains ODB-II scan codes, which are single-line,
+tab-separate text fields:
+
+$ dat -l codes.dat
+Reading codes.dat
+- CDEF - pcodes                       - binary data (89594 bytes)
+- CDEF - ucodes                       - binary data (15592 bytes)
+$ dat -v -x codes.dat pcodes
+Reading codes.dat
+Exporting pcodes -> pcodes
+$ head pcodes
+P0001   Fuel Volume Regulator Control Circuit/Open
+P0002   Fuel Volume Regulator Control Circuit Range/Performance
+P0003   Fuel Volume Regulator Control Circuit Low
+P0004   Fuel Volume Regulator Control Circuit High
+...
+

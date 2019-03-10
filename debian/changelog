@@ -1,0 +1,79 @@
+scantool (1.22-1) unstable; urgency=medium
+
+  * Switch source package to new home, which adds all outstanding
+    patches.
+  * debian/control:
+    - bump standards version: compat to 12.
+    - update homepage
+  * debian/rules: remove dzcomm entirely
+  * debian/watch: aim at github
+
+ -- Kees Cook <kees@debian.org>  Sun, 10 Mar 2019 15:31:25 -0700
+
+scantool (1.21+dfsg-7) unstable; urgency=low
+
+  * Fix FTCBFS: Let dh_auto_configure pass --host to ./configure,
+    thanks to Helmut Grohne. (Closes: #915275)
+
+ -- Kees Cook <kees@debian.org>  Sun, 13 Jan 2019 09:30:59 -0800
+
+scantool (1.21+dfsg-6) unstable; urgency=medium
+
+  * debian/control: Build-depend on liballegro4-dev, thanks to Adam Conrad.
+  * debian/rules: handle already-cleaned tree more gracefully.
+
+ -- Kees Cook <kees@debian.org>  Mon, 24 Aug 2015 16:29:13 -0700
+
+scantool (1.21+dfsg-5) unstable; urgency=low
+
+  * Solved FTBFS with gcc-5 (Closes: 778110):
+    - explicitly use static inlines:
+      - debian/patches/dzcomm-usb-serial.patch
+    - fix asprintf declaration and usage:
+      - debian/patches/multi-code.patch
+      - debian/patches/scantool-linux-build.patch
+  * Fixed lintian issues:
+    - debian/copyright: add missing license short name.
+    - debian/control: bump standards version, no changes needed.
+
+ -- Kees Cook <kees@debian.org>  Sat, 14 Mar 2015 10:53:58 -0700
+
+scantool (1.21+dfsg-4) unstable; urgency=low
+
+  * debian/patches/scantool-linux-build.patch: update to include path to
+    codes file, which should not be static.
+  * debian/codes: add vendor-specific DTC code lists to available codes.
+  * debian/patches/multi-code.patch: handle duplicate codes and report
+    code origin as a prefix.
+
+ -- Kees Cook <kees@debian.org>  Sun, 23 Dec 2012 10:15:51 -0800
+
+scantool (1.21+dfsg-3) unstable; urgency=low
+
+  * Add debian/patches/kfreebsd-build-fixes.patch: fix up source for
+    kfreebsd builds.
+  * debian/rules, debian/patches/build-flags.patch: pass compiler flags to
+    build correctly.
+  * debian/control, debian/compat: bump compat level to 9.
+  * debian/control: bump standards version; no changes needed.
+  * debian/patches/drop-report-request.patch: do not report to scantool.net
+    since they don't want reports on this ancient software any more. :)
+  * debian/patches/allow-elm327-clones.patch: fix clones harder
+    (Closes: 674179).
+
+ -- Kees Cook <kees@debian.org>  Fri, 01 Jun 2012 11:07:05 -0700
+
+scantool (1.21+dfsg-2) unstable; urgency=low
+
+  * Add debian/patches/allow-elm327-clones.patch: do not abort when faced
+    with an ELM327 device that wasn't manufactured by ScanTool.Net
+    (Closes: 630603).
+
+ -- Kees Cook <kees@debian.org>  Wed, 22 Jun 2011 22:27:26 -0700
+
+scantool (1.21+dfsg-1) unstable; urgency=low
+
+  * Initial release (Closes: 627635).
+    - dropped unused non-free "listports.{c,h}" from orig tarball.
+
+ -- Kees Cook <kees@debian.org>  Sat, 28 May 2011 06:57:37 -0700

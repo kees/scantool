@@ -1,0 +1,15 @@
+Source: scantool
+Section: electronics
+Priority: extra
+Maintainer: Kees Cook <kees@debian.org>
+Build-Depends: debhelper-compat (= 12), liballegro4-dev
+Standards-Version: 4.3
+Homepage: https://github.com/kees/scantool
+
+Package: scantool
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: OBD-II vehicle diagnostic scanner
+ Scanning tool that communicates with OBD-II serial port devices, used
+ for vehicle diagnostics. Requires a serial to CAN bus device specific
+ to the OBD-II port for a given model vehicle.

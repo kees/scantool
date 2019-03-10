@@ -1,0 +1,44 @@
+.\"                                      Hey, EMACS: -*- nroff -*-
+.\" First parameter, NAME, should be all caps
+.\" Second parameter, SECTION, should be 1-8, maybe w/ subsection
+.\" other parameters are allowed: see man(7), man(1)
+.TH SCANTOOL 1 "May 22, 2011"
+.\" Please adjust this date whenever revising the manpage.
+.\"
+.\" Some roff macros, for reference:
+.\" .nh        disable hyphenation
+.\" .hy        enable hyphenation
+.\" .ad l      left justify
+.\" .ad b      justify to both left and right margins
+.\" .nf        disable filling
+.\" .fi        enable filling
+.\" .br        insert line break
+.\" .sp <n>    insert n+1 empty lines
+.\" for manpage-specific macros, see man(7)
+.SH NAME
+scantool \- ODB-II vehicle diagnostic scanner
+.SH SYNOPSIS
+.B scantool
+.SH DESCRIPTION
+This manual page documents briefly the
+.B scantool
+program.
+.PP
+.\" TeX users may be more comfortable with the \fB<whatever>\fP and
+.\" \fI<whatever>\fP escape sequences to invode bold face and italics,
+.\" respectively.
+\fBscantool\fP is a program that communicates with an ODB-II serial
+device that converts CAN-bus to RS-232. Since the application was originally
+written for DOS, the internal configuration refers to COM1, COM2, etc.
+As a work-around under Linux, selecting COM1 will attempt to open
+/dev/ttyUSB0 then /dev/ttyS0, and COM2 will attempt /dev/ttyUSB1 then
+/dev/ttyS1, etc. When connecting to a vehicle ODB-II system, the correct baud
+rate will need to be manually selected via trial-and-error.
+.SH OPTIONS
+There are no command line options; all settings are configured within
+the GUI.
+.SH AUTHOR
+\fBscantool\fP was written by ScanTool.net, LLC.
+
+This manual page was written by Kees Cook <kees@debian.org>,
+for the Debian project (and may be used by others).

@@ -1,0 +1,3 @@
+scantool usr/bin/
+scantool.dat usr/share/scantool
+codes.dat usr/share/scantool
