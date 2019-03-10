@@ -1,16 +1,14 @@
 CC = gcc
+AL_LIBS = $(shell allegro-config --libs --static)
 
 ifdef DEBUGMODE
    CFLAGS = -g -Wall
-   AL_LIBS = -lalld
    DEFINES = -DDEBUG
 else
 ifdef RELEASE
    CFLAGS = -Wall -O3 -fexpensive-optimizations -s
-   AL_LIBS = -lalleg
 else
    CFLAGS = -O -Wall
-   AL_LIBS = -lalleg
 endif
 endif
 
@@ -26,15 +24,14 @@ ifdef MINGDIR
    OBJ = scantool.res get_port_names.o
    EXT = .exe
 else
+ifdef DZCOMM
    LIBS = -ldzcom $(AL_LIBS)
    EXT = .exe
-endif
-
-DEBIAN?=1
-ifdef DEBIAN
-   # This really should be $(shell allegro-config --libs) but that's broken?
-   LIBS += -lX11 -lXext -lXpm -lXcursor -lXxf86vm -ldl -lpthread -lm
+else
+   DEFINES += -DTERMIOS
+   LIBS = $(AL_LIBS)
    EXT =
+endif
 endif
 
 ifndef NOWERROR
