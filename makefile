@@ -44,9 +44,19 @@ endif
 
 OBJ += main.o main_menu.o serial.o options.o sensors.o trouble_code_reader.o custom_gui.o error_handlers.o about.o reset.o
 BIN = scantool$(EXT)
+CODES = codes.dat
+SUBDIRS = codes
+
+all: $(BIN) $(SUBDIRS) $(CODES)
 
 ifdef MINGDIR
 endif
+
+$(SUBDIRS):
+	$(MAKE) -C $@
+
+$(CODES): codes/codes.dat
+	cp -a $< $@
 
 $(BIN): $(OBJ)
 	$(CC) $(CFLAGS) -o $(BIN) $(OBJ) $(LDFLAGS) $(LIBS)
@@ -59,10 +69,9 @@ release:
 	make RELEASE=1
 endif
 
-all: $(BIN)
-
 clean:
-	rm -f $(OBJ) $(BIN)
+	$(MAKE) -C codes clean
+	rm -f $(OBJ) $(BIN) $(CODES)
 
 veryclean: clean
 	rm -f $(BIN)
@@ -102,3 +111,5 @@ reset.o: reset.c globals.h custom_gui.h main_menu.h serial.h reset.h
 
 get_port_names.o: get_port_names.c get_port_names.h
 	$(CC) $(CFLAGS) -c get_port_names.c
+
+.PHONY: all $(SUBDIRS)

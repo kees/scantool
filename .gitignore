@@ -1,0 +1,6 @@
+*.o
+scantool
+codes.dat
+codes/*.out
+codes/*codes
+codes/codes.dat
