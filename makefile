@@ -55,8 +55,8 @@ endif
 $(SUBDIRS):
 	$(MAKE) -C $@
 
-$(CODES): codes/codes.dat
-	cp -a $< $@
+$(CODES): $(SUBDIRS)
+	cp -a codes/codes.dat $@
 
 $(BIN): $(OBJ)
 	$(CC) $(CFLAGS) -o $(BIN) $(OBJ) $(LDFLAGS) $(LIBS)
@@ -112,4 +112,4 @@ reset.o: reset.c globals.h custom_gui.h main_menu.h serial.h reset.h
 get_port_names.o: get_port_names.c get_port_names.h
 	$(CC) $(CFLAGS) -c get_port_names.c
 
-.PHONY: all $(SUBDIRS)
+.PHONY: all clean $(SUBDIRS)

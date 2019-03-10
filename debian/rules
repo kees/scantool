@@ -1,10 +1,5 @@
 #!/usr/bin/make -f
-# -*- makefile -*-
-
 export DEB_BUILD_MAINT_OPTIONS = hardening=+all
-
-# Uncomment this to turn on verbose mode.
-#export DH_VERBOSE=1
 
 %:
 	dh $@
