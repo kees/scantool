@@ -10,8 +10,6 @@
 int nostretch_icon_proc(int msg, DIALOG *d, int c)
 {
    BITMAP *butimage = (BITMAP *)d->dp;
-   int butx;
-   int buty;
 
    if ((msg == MSG_DRAW) && (!(d->flags & D_HIDDEN)))
    {
@@ -25,8 +23,6 @@ int nostretch_icon_proc(int msg, DIALOG *d, int c)
       }
 
       /* put the graphic on screen */
-      butx = butimage->w;
-      buty = butimage->h;
       blit(butimage, screen, 0, 0, d->x, d->y, butimage->w, butimage->h);
 
       return D_O_K;
