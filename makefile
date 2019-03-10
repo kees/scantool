@@ -1,5 +1,5 @@
 CC = gcc
-AL_LIBS = $(shell allegro-config --libs --static)
+AL_LIBS = $(shell allegro-config --libs)
 
 ifdef DEBUGMODE
    CFLAGS = -g -Wall
@@ -29,7 +29,7 @@ ifdef DZCOMM
    EXT = .exe
 else
    DEFINES += -DTERMIOS
-   LIBS = $(AL_LIBS)
+   LIBS = $(AL_LIBS) -lX11 -lXext -lXpm -lXcursor -lXxf86vm -ldl -lpthread -lm
    EXT =
 endif
 endif
