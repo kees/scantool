@@ -7,6 +7,8 @@
 #include "error_handlers.h"
 #ifdef ALLEGRO_WINDOWS
    #include "get_port_names.h"
+#elif TERMIOS
+   #define PORT_NAME_BUF_SIZE   16
 #else
    #define PORT_NAME_BUF_SIZE    5
 #endif
@@ -22,7 +24,11 @@
 #endif
 #define DEFAULT_SYSTEM_OF_MEASURMENTS   IMPERIAL
 #define DEFAULT_COMPORT_NUMBER          -1
-#define DEFAULT_BAUD_RATE               BAUD_RATE_115200
+#ifdef TERMIOS
+   #define DEFAULT_BAUD_RATE               BAUD_RATE_9600
+#else
+   #define DEFAULT_BAUD_RATE               BAUD_RATE_115200
+#endif
 
 typedef struct
 {
@@ -59,7 +65,7 @@ static DIALOG options_dialog[] =
    { option_element_proc, 48,  56,  80,  10,  C_BLACK, C_LIGHT_GRAY,  0,    0,      0,   0,   "Metric",                  NULL, &option_metric           },
    { option_element_proc, 48,  72,  88,  10,  C_BLACK, C_LIGHT_GRAY,  0,    0,      0,   0,   "US",                      NULL, &option_imperial         },
    { d_text_proc,         16,  96,  152, 16,  C_BLACK, C_TRANSP,      0,    0,      0,   0,   "COM Port:",               NULL, NULL                     },
-   { comport_list_proc,   48,  120, 94,  148, C_BLACK, C_LIGHT_GRAY,  0,    0,      0,   0,   listbox_getter,            NULL, NULL                     },
+   { comport_list_proc,   20,  120, 190,  148, C_BLACK, C_LIGHT_GRAY,  0,    0,      0,   0,   listbox_getter,            NULL, NULL                     },
    { d_text_proc,         16,  282, 200, 16,  C_BLACK, C_TRANSP,      0,    0,      0,   0,   "Baud Rate:",              NULL, NULL                     },
    { option_element_proc, 20,  306, 80,  10,  C_BLACK, C_LIGHT_GRAY,  0,    0,      1,   0,   "9600",                    NULL, &option_baud_rate_9600   },
    { option_element_proc, 110, 306, 80,  10,  C_BLACK, C_LIGHT_GRAY,  0,    0,      1,   0,   "38400",                   NULL, &option_baud_rate_38400  },
@@ -333,7 +339,43 @@ void fill_comport_list()
       for (i = 0; i < comport_list_size; i++)
          comport_list_numbers[i] = atoi((comport_list_strings + i * PORT_NAME_BUF_SIZE) + 3) - 1;
    }
+#elif TERMIOS
+    char tmp[PORT_NAME_BUF_SIZE];
+   comport_list_strings = calloc(16 , (sizeof(char) * PORT_NAME_BUF_SIZE));
+   if (comport_list_strings == NULL)
+      fatal_error("Could not allocate memory for comport_list_strings.");
    
+   comport_list_numbers = malloc(16 * sizeof(int));
+   if (comport_list_numbers == NULL)
+      fatal_error("Could not allocate memory for comport_list_numbers.");
+
+    int nb=0;
+    FILE *f;
+    for(i=0;i<8;i++)
+    {
+        snprintf(tmp,sizeof(tmp),"/dev/ttyS%d",i);
+        f=fopen(tmp,"r");
+        if( f != NULL )
+        {
+            strcpy(comport_list_strings + nb * PORT_NAME_BUF_SIZE,tmp);
+            comport_list_numbers[nb]=i;
+            nb++;
+            fclose(f);
+        }
+    }
+    for(i=0;i<8;i++)
+    {
+        snprintf(tmp,sizeof(tmp),"/dev/ttyUSB%d",i);
+        f=fopen(tmp,"r");
+        if( f != NULL )
+        {
+            strcpy(comport_list_strings + nb * PORT_NAME_BUF_SIZE,tmp);
+            comport_list_numbers[nb]=100+i;
+            nb++;
+            fclose(f);
+        }
+    }
+    comport_list_size = nb;
 #else
    
    comport_list_strings = malloc(8 * (sizeof(char) * PORT_NAME_BUF_SIZE));

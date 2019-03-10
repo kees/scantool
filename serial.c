@@ -4,6 +4,30 @@
 #include <allegro/internal/aintern.h>
 #ifdef ALLEGRO_WINDOWS
    #include <winalleg.h>
+#elif TERMIOS
+   #include <stdio.h>
+   #include <termios.h>
+   char ttyName[16][16] = {
+        "/dev/ttyS0","/dev/ttyS1","/dev/ttyS2","/dev/ttyS3",
+        "/dev/ttyUSB0","/dev/ttyUSB1","/dev/ttyUSB2","/dev/ttyUSB3",
+   };
+   char *getTtyName(int *idx)
+   {
+       char *p=NULL;
+       FILE *f;
+
+       if(*idx<0 || *idx>7) return(NULL);
+
+       f=fopen( ttyName[*idx], "r" );
+       if( f!=NULL )
+       {
+           p = ttyName[ (*idx) ];
+           fclose(f);
+       }
+       (*idx)++;
+       return( p );
+   }
+
 #else
    #include <dzcomm.h>
 #endif
@@ -11,6 +35,9 @@
 
 #ifdef ALLEGRO_WINDOWS
    static HANDLE com_port;
+#elif TERMIOS
+   static int fdtty;
+   static struct termios oldtio,newtio;
 #else
    static comm_port *com_port;
 #endif
@@ -49,7 +76,9 @@ void stop_serial_timer()
 void serial_module_init()
 {
 #ifndef ALLEGRO_WINDOWS
+#ifndef TERMIOS
    dzcomm_init();
+#endif
 #endif
    serial_timer_running = FALSE;
    /* all variables and code used inside interrupt handlers must be locked */
@@ -64,7 +93,9 @@ void serial_module_shutdown()
    close_comport();
    
 #ifndef ALLEGRO_WINDOWS
-   // dzcomm_closedown();
+#ifndef TERMIOS
+    dzcomm_closedown();
+#endif
 #endif
    
    _remove_exit_func(serial_module_shutdown);
@@ -138,6 +169,38 @@ int open_comport()
       comport.status = NOT_OPEN; //port was not open
       return -1;
    }
+#elif TERMIOS
+    char tmp[16];
+    if( comport.number < 100 )
+        sprintf(tmp,"/dev/ttyS%d",comport.number);
+    else
+        sprintf(tmp,"/dev/ttyUSB%d",comport.number-100);
+    fdtty = open( tmp, O_RDWR | O_NOCTTY );
+    if (fdtty <0) { return(-1); }
+
+    tcgetattr(fdtty,&oldtio); /* save current port settings */
+
+    bzero(&newtio, sizeof(newtio));
+
+    cfsetspeed(&newtio, comport.baud_rate);
+
+    cfmakeraw(&newtio);
+    newtio.c_cflag |= (CLOCAL | CREAD);
+
+            // No parity (8N1):
+    newtio.c_cflag &= ~PARENB;
+    newtio.c_cflag &= ~CSTOPB;
+    newtio.c_cflag &= ~CSIZE;
+    newtio.c_cflag |= CS8;
+
+        // disable hardware flow control
+    newtio.c_cflag &= ~CRTSCTS ;
+
+    newtio.c_cc[VTIME]    = 0;   /* inter-character timer unused */
+    newtio.c_cc[VMIN]     = 0;   /* blocking read until 5 chars received */
+
+    tcflush(fdtty, TCIFLUSH);
+    tcsetattr(fdtty,TCSANOW,&newtio);
 #else
    com_port = comm_port_init(comport.number);
    if (!com_port) {
@@ -172,6 +235,9 @@ void close_comport()
 #ifdef ALLEGRO_WINDOWS
       PurgeComm(com_port, PURGE_TXCLEAR|PURGE_RXCLEAR);
       CloseHandle(com_port);
+#elif TERMIOS
+      tcsetattr(fdtty,TCSANOW,&oldtio);
+      close(fdtty);
 #else
       comm_port_flush_output(com_port);
       comm_port_flush_input(com_port);
@@ -201,6 +267,18 @@ void send_command(const char *command)
 #endif
       return;
    }
+#elif TERMIOS
+//    printf("tx:'%s'\n",command);
+	if( write(fdtty,tx_buf,strlen(tx_buf)) == -1 )
+	{
+	  perror("write tty");
+	  close(fdtty);
+	  fdtty = -1;
+	}
+	else
+	{
+        tcflush(fdtty, TCIFLUSH);
+	}
 #else
    comm_port_flush_output(com_port);
    comm_port_flush_input(com_port);
@@ -216,13 +294,11 @@ void send_command(const char *command)
 int read_comport(char *response)
 {
    char *prompt_pos = NULL;
-   int i;
-   
 #ifdef ALLEGRO_WINDOWS
    DWORD bytes_read = 0;
    DWORD errors;
    COMSTAT stat;
-   int j;
+   int i, j;
    
    response[0] = '\0';
    ClearCommError(com_port, &errors, &stat);
@@ -234,7 +310,37 @@ int read_comport(char *response)
       if (response[i] > 0)
          response[j++] = response[i];
    response[j] = 0;
+#elif TERMIOS
+   int res=1;
+   fd_set readfs;
+   struct timeval timeout;
+   char tmp[64];
+   bzero(response,64);
+   bzero(tmp,64);
+
+   FD_ZERO(&readfs);
+   FD_SET(fdtty, &readfs);
+   while( res != 0 && fdtty != -1)
+   {
+       timeout.tv_usec = 200e3;  /* millisecondes */
+       timeout.tv_sec  = 0;  /* secondes */
+       res = select(fdtty+1, &readfs, NULL, NULL, &timeout);
+       if( res != 0 )
+       {
+           if( read(fdtty, tmp, 64) != 0 )
+           {
+               strcat( response, tmp );
+               bzero(tmp,64);
+           }
+       }
+   }
+
+//    printf("rx:'");
+//    i=0;while(response[i]!=0) { printf("%c",response[i]>=32?response[i]:'.');i++;}
+//    printf("'\n");
+
 #else
+   int i;
    char c;
    
    i = 0;
