@@ -519,8 +519,8 @@ int tr_code_proc(int msg, DIALOG *d, int c)
    int response_type;                        // BUS_BUSY, BUS_ERROR, DATA_ERROR, etc.
    int pending_codes_cnt = 0;
    char comport_buffer[256];                  // temporary storage for comport data
-   char buf1[64];
-   char buf2[64];
+   char buf1[128];
+   char buf2[128];
 
    switch (msg)
    {
@@ -911,7 +911,7 @@ int handle_read_codes(char *vehicle_response, int pending)
 {
    int dtc_count = 0;
    char *start = vehicle_response;
-   char filter[3];
+   char filter[16];
    char msg[48];
    int can_resp_cnt = 0;
    int can_msg_cnt = 0;

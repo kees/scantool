@@ -702,8 +702,8 @@ int large_text_proc(int msg, DIALOG *d, int c)
 
 int about_this_computer_proc(int msg, DIALOG *d, int c)
 {
-   char cpu_info_buf[96];
-   char os_type_buf[96];
+   char cpu_info_buf[300];
+   char os_type_buf[300];
    char os_name[32];
    char processor_vendor[64];
    char processor_family[64];
