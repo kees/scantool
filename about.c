@@ -61,8 +61,7 @@ static DIALOG thanks_dialog[] =
    { d_text_proc,       24,  108, 560, 24,  C_BLACK, C_TRANSP,      0,    0,      0,   0,   "- Dim Zegebart and Neil Townsend for the DZComm serial library", NULL, NULL },
    { d_text_proc,       24,  132, 560, 24,  C_BLACK, C_TRANSP,      0,    0,      0,   0,   "- Julien Cugniere for his Allegro dialog editor", NULL, NULL },
    { d_text_proc,       24,  156, 560, 24,  C_BLACK, C_TRANSP,      0,    0,      0,   0,   "- Eric Botcazou and Allegro mailing list folks for their tips and suggestions", NULL, NULL },
-   { d_text_proc,       24,  180, 560, 24,  C_BLACK, C_TRANSP,      0,    0,      0,   0,   "- Joaquín Mª López Muñoz (joaquin@tid.es) for listports library", NULL, NULL },
-   { d_text_proc,       24,  204, 560, 24,  C_BLACK, C_TRANSP,      0,    0,      0,   0,   "- All users who provided feedback and bug reports", NULL, NULL },
+   { d_text_proc,       24,  180, 560, 24,  C_BLACK, C_TRANSP,      0,    0,      0,   0,   "- All users who provided feedback and bug reports", NULL, NULL },
    { d_button_proc,     248, 235, 112, 40,  C_BLACK, C_DARK_YELLOW, 'c',  D_EXIT, 0,   0,   "&Close", NULL, NULL },
    { d_yield_proc,      0,   0,   0,   0,   0,       0,             0,    0,      0,   0,   NULL,     NULL, NULL },
    { NULL,              0,   0,   0,   0,   0,       0,             0,    0,      0,   0,   NULL,     NULL, NULL }
