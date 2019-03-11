@@ -18,7 +18,7 @@ codes.dat: $(OUT)
 	set -e; for code in $$(cut -c1 all.out | sort -u); do \
 		lower=$$(echo $$code | tr A-Z a-z); \
 		grep ^$$code all.out > $${lower}codes; \
-		dat -a $@.new $${lower}codes; \
+		dat -t CDEF -a $@.new $${lower}codes; \
 	done
 	mv $@.new $@
 
