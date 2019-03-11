@@ -27,7 +27,7 @@ ifdef DZCOMM
    EXT = .exe
 else
    DEFINES += -DTERMIOS
-   LIBS = $(AL_LIBS) -lX11 -lXext -lXpm -lXcursor -lXxf86vm -ldl -lpthread -lm
+   LIBS = $(AL_LIBS)
    EXT =
 endif
 endif
@@ -66,8 +66,8 @@ endif
 
 install: $(BIN) $(SUBDIRS)
 	install -D $(BIN) $(DESTDIR)/usr/bin/$(BIN)
-	install -D $(EXE).dat $(DESTDIR)/usr/share/$(EXE)/$(EXE).dat
-	install -D codes/codes.dat $(DESTDIR)/usr/share/$(EXE)/codes.dat
+	install -D -m 0644 $(EXE).dat $(DESTDIR)/usr/share/$(EXE)/$(EXE).dat
+	install -D -m 0644 codes/codes.dat $(DESTDIR)/usr/share/$(EXE)/codes.dat
 
 clean:
 	$(MAKE) -C codes clean

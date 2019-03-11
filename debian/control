@@ -1,6 +1,6 @@
 Source: scantool
 Section: electronics
-Priority: extra
+Priority: optional
 Maintainer: Kees Cook <kees@debian.org>
 Build-Depends: debhelper-compat (= 12), liballegro4-dev
 Standards-Version: 4.3
