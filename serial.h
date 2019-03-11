@@ -12,7 +12,6 @@
    #define BAUD_RATE_38400   B38400
    #define BAUD_RATE_115200  B115200
    #define BAUD_RATE_230400  B230400
-   char *getTtyName(int *idx);
 #else
    #define DZCOMM_SECONDARY_INCLUDE
    #include <dzcomm.h>

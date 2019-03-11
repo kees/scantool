@@ -64,7 +64,7 @@ static DIALOG options_dialog[] =
    { d_text_proc,         16,  32,  200, 16,  C_BLACK, C_TRANSP,      0,    0,      0,   0,   "System Of Measurements:", NULL, NULL                     },
    { option_element_proc, 48,  56,  80,  10,  C_BLACK, C_LIGHT_GRAY,  0,    0,      0,   0,   "Metric",                  NULL, &option_metric           },
    { option_element_proc, 48,  72,  88,  10,  C_BLACK, C_LIGHT_GRAY,  0,    0,      0,   0,   "US",                      NULL, &option_imperial         },
-   { d_text_proc,         16,  96,  152, 16,  C_BLACK, C_TRANSP,      0,    0,      0,   0,   "COM Port:",               NULL, NULL                     },
+   { d_text_proc,         16,  96,  152, 16,  C_BLACK, C_TRANSP,      0,    0,      0,   0,   "Serial Port:",            NULL, NULL                     },
    { comport_list_proc,   20,  120, 190,  148, C_BLACK, C_LIGHT_GRAY,  0,    0,      0,   0,   listbox_getter,            NULL, NULL                     },
    { d_text_proc,         16,  282, 200, 16,  C_BLACK, C_TRANSP,      0,    0,      0,   0,   "Baud Rate:",              NULL, NULL                     },
    { option_element_proc, 20,  306, 80,  10,  C_BLACK, C_LIGHT_GRAY,  0,    0,      1,   0,   "9600",                    NULL, &option_baud_rate_9600   },
@@ -340,11 +340,11 @@ void fill_comport_list()
          comport_list_numbers[i] = atoi((comport_list_strings + i * PORT_NAME_BUF_SIZE) + 3) - 1;
    }
 #elif TERMIOS
-    char tmp[PORT_NAME_BUF_SIZE];
+   char tmp[PORT_NAME_BUF_SIZE];
    comport_list_strings = calloc(16 , (sizeof(char) * PORT_NAME_BUF_SIZE));
    if (comport_list_strings == NULL)
       fatal_error("Could not allocate memory for comport_list_strings.");
-   
+
    comport_list_numbers = malloc(16 * sizeof(int));
    if (comport_list_numbers == NULL)
       fatal_error("Could not allocate memory for comport_list_numbers.");

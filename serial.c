@@ -7,27 +7,6 @@
 #elif TERMIOS
    #include <stdio.h>
    #include <termios.h>
-   char ttyName[16][16] = {
-        "/dev/ttyS0","/dev/ttyS1","/dev/ttyS2","/dev/ttyS3",
-        "/dev/ttyUSB0","/dev/ttyUSB1","/dev/ttyUSB2","/dev/ttyUSB3",
-   };
-   char *getTtyName(int *idx)
-   {
-       char *p=NULL;
-       FILE *f;
-
-       if(*idx<0 || *idx>7) return(NULL);
-
-       f=fopen( ttyName[*idx], "r" );
-       if( f!=NULL )
-       {
-           p = ttyName[ (*idx) ];
-           fclose(f);
-       }
-       (*idx)++;
-       return( p );
-   }
-
 #else
    #include <dzcomm.h>
 #endif
