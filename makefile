@@ -1,14 +1,12 @@
 CC = gcc
 AL_LIBS = $(shell allegro-config --libs)
+CFLAGS ?= -O2 -g -Wall
 
 ifdef DEBUGMODE
-   CFLAGS = -g -Wall
    DEFINES = -DDEBUG
 else
 ifdef RELEASE
-   CFLAGS = -Wall -O3 -fexpensive-optimizations -s
-else
-   CFLAGS = -O -Wall
+   CFLAGS += -O3 -fexpensive-optimizations -s
 endif
 endif
 
@@ -43,20 +41,17 @@ ifdef DEFINES
 endif
 
 OBJ += main.o main_menu.o serial.o options.o sensors.o trouble_code_reader.o custom_gui.o error_handlers.o about.o reset.o
-BIN = scantool$(EXT)
-CODES = codes.dat
+EXE = scantool
+BIN = $(EXE)$(EXT)
 SUBDIRS = codes
 
-all: $(BIN) $(SUBDIRS) $(CODES)
+all: $(BIN) $(SUBDIRS)
 
 ifdef MINGDIR
 endif
 
 $(SUBDIRS):
 	$(MAKE) -C $@
-
-$(CODES): $(SUBDIRS)
-	cp -a codes/codes.dat $@
 
 $(BIN): $(OBJ)
 	$(CC) $(CFLAGS) -o $(BIN) $(OBJ) $(LDFLAGS) $(LIBS)
@@ -68,6 +63,11 @@ else
 release:
 	make RELEASE=1
 endif
+
+install: $(BIN) $(SUBDIRS)
+	install -D $(BIN) $(DESTDIR)/usr/bin/$(BIN)
+	install -D $(EXE).dat $(DESTDIR)/usr/share/$(EXE)/$(EXE).dat
+	install -D codes/codes.dat $(DESTDIR)/usr/share/$(EXE)/codes.dat
 
 clean:
 	$(MAKE) -C codes clean
@@ -112,4 +112,4 @@ reset.o: reset.c globals.h custom_gui.h main_menu.h serial.h reset.h
 get_port_names.o: get_port_names.c get_port_names.h
 	$(CC) $(CFLAGS) -c get_port_names.c
 
-.PHONY: all clean $(SUBDIRS)
+.PHONY: all install clean $(SUBDIRS)
