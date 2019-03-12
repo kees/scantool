@@ -1,11 +1,14 @@
 scantool (2.0-1) unstable; urgency=medium
 
   * Update to latest "upstream" release, which incorporates all
-    debian patches (Closes: #919201).
+    debian patches. Most notable change is the new serial port
+    code (Closes: #919201), and improved trouble code text.
   * debian/control:
     - bump standards version: compat to 12.
     - update homepage
-  * debian/rules: remove dzcomm entirely
+  * debian/rules:
+    - clean up redundant comments
+    - remove dzcomm entirely (Closes: 920787)
   * debian/watch: aim at github
 
  -- Kees Cook <kees@debian.org>  Sun, 10 Mar 2019 15:31:25 -0700
