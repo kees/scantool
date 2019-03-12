@@ -177,16 +177,16 @@ P0176	Fuel Composition Sensor Circuit
 P0177	Fuel Composition Sensor Circuit Range/Performance
 P0178	Fuel Composition Sensor Circuit Low
 P0179	Fuel Composition Sensor Circuit High
-P0180	Fuel Temperature Sensor A Circuit
-P0181	Fuel Temperature Sensor A Circuit Range/Performance
-P0182	Fuel Temperature Sensor A Circuit Low
-P0183	Fuel Temperature Sensor A Circuit High
-P0184	Fuel Temperature Sensor A Circuit Intermittent
-P0185	Fuel Temperature Sensor B Circuit
-P0186	Fuel Temperature Sensor B Circuit Range/Performance
-P0187	Fuel Temperature Sensor B Circuit Low
-P0188	Fuel Temperature Sensor B Circuit High
-P0189	Fuel Temperature Sensor B Circuit Intermittent
+P0180	Fuel Temperature Sensor "A" Circuit
+P0181	Fuel Temperature Sensor "A" Circuit Range/Performance
+P0182	Fuel Temperature Sensor "A" Circuit Low
+P0183	Fuel Temperature Sensor "A" Circuit High
+P0184	Fuel Temperature Sensor "A" Circuit Intermittent
+P0185	Fuel Temperature Sensor "B" Circuit
+P0186	Fuel Temperature Sensor "B" Circuit Range/Performance
+P0187	Fuel Temperature Sensor "B" Circuit Low
+P0188	Fuel Temperature Sensor "B" Circuit High
+P0189	Fuel Temperature Sensor "B" Circuit Intermittent
 P0190	Fuel Rail Pressure Sensor Circuit
 P0191	Fuel Rail Pressure Sensor Circuit Range/Performance
 P0192	Fuel Rail Pressure Sensor Circuit Low
@@ -432,26 +432,26 @@ P0436	Catalyst Temperature Sensor Range/Performance
 P0437	Catalyst Temperature Sensor Low
 P0438	Catalyst Temperature Sensor High
 P0439	Catalyst Heater Control Circuit
-P0440	Evaporative Emission System
-P0441	Evaporative Emission System Incorrect Purge Flow
-P0442	Evaporative Emission System Leak Detected (small leak)
-P0443	Evaporative Emission System Purge Control Valve Circuit
-P0444	Evaporative Emission System Purge Control Valve Circuit Open
-P0445	Evaporative Emission System Purge Control Valve Circuit Shorted
-P0446	Evaporative Emission System Vent Control Circuit
-P0447	Evaporative Emission System Vent Control Circuit Open
-P0448	Evaporative Emission System Vent Control Circuit Shorted
-P0449	Evaporative Emission System Vent Valve/Solenoid Circuit
-P0450	Evaporative Emission System Pressure Sensor/Switch
-P0451	Evaporative Emission System Pressure Sensor/Switch Range/Performance
-P0452	Evaporative Emission System Pressure Sensor/Switch Low
-P0453	Evaporative Emission System Pressure Sensor/Switch High
-P0454	Evaporative Emission System Pressure Sensor/Switch Intermittent
-P0455	Evaporative Emission System Leak Detected (large leak)
-P0456	Evaporative Emission System Leak Detected (very small leak)
-P0457	Evaporative Emission System Leak Detected (fuel cap loose/off)
-P0458	Evaporative Emission System Purge Control Valve Circuit Low
-P0459	Evaporative Emission System Purge Control Valve Circuit High
+P0440	Evaporative Emission Control System
+P0441	Evaporative Emission Control System Incorrect Purge Flow
+P0442	Evaporative Emission Control System Leak Detected (small leak)
+P0443	Evaporative Emission Control System Purge Control Valve Circuit
+P0444	Evaporative Emission Control System Purge Control Valve Circuit Open
+P0445	Evaporative Emission Control System Purge Control Valve Circuit Shorted
+P0446	Evaporative Emission Control System Vent Control Circuit
+P0447	Evaporative Emission Control System Vent Control Circuit Open
+P0448	Evaporative Emission Control System Vent Control Circuit Shorted
+P0449	Evaporative Emission Control System Vent Valve/Solenoid Circuit
+P0450	Evaporative Emission Control System Pressure Sensor/Switch
+P0451	Evaporative Emission Control System Pressure Sensor/Switch Range/Performance
+P0452	Evaporative Emission Control System Pressure Sensor/Switch Low
+P0453	Evaporative Emission Control System Pressure Sensor/Switch High
+P0454	Evaporative Emission Control System Pressure Sensor/Switch Intermittent
+P0455	Evaporative Emission Control System Leak Detected (large leak)
+P0456	Evaporative Emission Control System Leak Detected (very small leak)
+P0457	Evaporative Emission Control System Leak Detected (fuel cap loose/off)
+P0458	Evaporative Emission Control System Purge Control Valve Circuit Low
+P0459	Evaporative Emission Control System Purge Control Valve Circuit High
 P0460	Fuel Level Sensor "A" Circuit
 P0461	Fuel Level Sensor "A" Circuit Range/Performance
 P0462	Fuel Level Sensor "A" Circuit Low
@@ -772,7 +772,7 @@ P0776	Pressure Control Solenoid "B" Performance or Stuck off
 P0777	Pressure Control Solenoid "B" Stuck On
 P0778	Pressure Control Solenoid "B" Electrical
 P0779	Pressure Control Solenoid "B" Intermittent
-P0780	Shift Error
+P0780	Shift Malfunction
 P0781	1-2 Shift
 P0782	2-3 Shift
 P0783	3-4 Shift
@@ -1792,50 +1792,50 @@ U0025	Low Speed CAN Communication Bus (-) Low
 U0026	Low Speed CAN Communication Bus (-) High
 U0027	Low Speed CAN Communication Bus (-) shorted to Bus (+)
 U0028	Vehicle Communication Bus A
-U0029	Vehicle Communication Bus A Performance
-U0030	Vehicle Communication Bus A (+) Open
-U0031	Vehicle Communication Bus A (+) Low
-U0032	Vehicle Communication Bus A (+) High
-U0033	Vehicle Communication Bus A (-) Open
-U0034	Vehicle Communication Bus A (-) Low
-U0035	Vehicle Communication Bus A (-) High
-U0036	Vehicle Communication Bus A (-) shorted to Bus A (+)
+U0029	Vehicle Communication Bus "A" Performance
+U0030	Vehicle Communication Bus "A" (+) Open
+U0031	Vehicle Communication Bus "A" (+) Low
+U0032	Vehicle Communication Bus "A" (+) High
+U0033	Vehicle Communication Bus "A" (-) Open
+U0034	Vehicle Communication Bus "A" (-) Low
+U0035	Vehicle Communication Bus "A" (-) High
+U0036	Vehicle Communication Bus "A" (-) shorted to Bus "A" (+)
 U0037	Vehicle Communication Bus B
-U0038	Vehicle Communication Bus B Performance
-U0039	Vehicle Communication Bus B (+) Open
-U0040	Vehicle Communication Bus B (+) Low
-U0041	Vehicle Communication Bus B (+) High
-U0042	Vehicle Communication Bus B (-) Open
-U0043	Vehicle Communication Bus B (-) Low
-U0044	Vehicle Communication Bus B (-) High
-U0045	Vehicle Communication Bus B (-) shorted to Bus B (+)
+U0038	Vehicle Communication Bus "B" Performance
+U0039	Vehicle Communication Bus "B" (+) Open
+U0040	Vehicle Communication Bus "B" (+) Low
+U0041	Vehicle Communication Bus "B" (+) High
+U0042	Vehicle Communication Bus "B" (-) Open
+U0043	Vehicle Communication Bus "B" (-) Low
+U0044	Vehicle Communication Bus "B" (-) High
+U0045	Vehicle Communication Bus "B" (-) shorted to Bus "B" (+)
 U0046	Vehicle Communication Bus C
-U0047	Vehicle Communication Bus C Performance
-U0048	Vehicle Communication Bus C (+) Open
-U0049	Vehicle Communication Bus C (+) Low
-U0050	Vehicle Communication Bus C (+) High
-U0051	Vehicle Communication Bus C (-) Open
-U0052	Vehicle Communication Bus C (-) Low
-U0053	Vehicle Communication Bus C (-) High
-U0054	Vehicle Communication Bus C (-) shorted to Bus C (+)
+U0047	Vehicle Communication Bus "C" Performance
+U0048	Vehicle Communication Bus "C" (+) Open
+U0049	Vehicle Communication Bus "C" (+) Low
+U0050	Vehicle Communication Bus "C" (+) High
+U0051	Vehicle Communication Bus "C" (-) Open
+U0052	Vehicle Communication Bus "C" (-) Low
+U0053	Vehicle Communication Bus "C" (-) High
+U0054	Vehicle Communication Bus "C" (-) shorted to Bus "C" (+)
 U0055	Vehicle Communication Bus D
-U0056	Vehicle Communication Bus D Performance
-U0057	Vehicle Communication Bus D (+) Open
-U0058	Vehicle Communication Bus D (+) Low
-U0059	Vehicle Communication Bus D (+) High
-U0060	Vehicle Communication Bus D (-) Open
-U0061	Vehicle Communication Bus D (-) Low
-U0062	Vehicle Communication Bus D (-) High
-U0063	Vehicle Communication Bus D (-) shorted to Bus D (+)
+U0056	Vehicle Communication Bus "D" Performance
+U0057	Vehicle Communication Bus "D" (+) Open
+U0058	Vehicle Communication Bus "D" (+) Low
+U0059	Vehicle Communication Bus "D" (+) High
+U0060	Vehicle Communication Bus "D" (-) Open
+U0061	Vehicle Communication Bus "D" (-) Low
+U0062	Vehicle Communication Bus "D" (-) High
+U0063	Vehicle Communication Bus "D" (-) shorted to Bus "D" (+)
 U0064	Vehicle Communication Bus E
-U0065	Vehicle Communication Bus E Performance
-U0066	Vehicle Communication Bus E (+) Open
-U0067	Vehicle Communication Bus E (+) Low
-U0068	Vehicle Communication Bus E (+) High
-U0069	Vehicle Communication Bus E (-) Open
-U0070	Vehicle Communication Bus E (-) Low
-U0071	Vehicle Communication Bus E (-) High
-U0072	Vehicle Communication Bus E (-) shorted to Bus E (+)
+U0065	Vehicle Communication Bus "E" Performance
+U0066	Vehicle Communication Bus "E" (+) Open
+U0067	Vehicle Communication Bus "E" (+) Low
+U0068	Vehicle Communication Bus "E" (+) High
+U0069	Vehicle Communication Bus "E" (-) Open
+U0070	Vehicle Communication Bus "E" (-) Low
+U0071	Vehicle Communication Bus "E" (-) High
+U0072	Vehicle Communication Bus "E" (-) shorted to Bus "E" (+)
 U0073	Control Module Communication Bus Off
 U0074	Reserved by Document
 U0075	Reserved by Document

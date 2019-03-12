@@ -1126,7 +1126,7 @@ struct code_t *find_trouble_code(char *dtc, int pending)
         if (trouble->FIELD) { \
             char *original = trouble->FIELD; \
             trouble->FIELD = malloc(strlen(original) + 2 + prefix_len + length + 1); \
-            sprintf(trouble->FIELD, "%s\n\n%s%s", original, prefix, code->FIELD); \
+            sprintf(trouble->FIELD, "%s\n%s%s", original, prefix, code->FIELD); \
         } else { \
             trouble->FIELD = malloc(prefix_len + length + 1); \
             sprintf(trouble->FIELD, "%s%s", prefix, code->FIELD); \
