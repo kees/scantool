@@ -43,15 +43,14 @@ endif
 OBJ += main.o main_menu.o serial.o options.o sensors.o trouble_code_reader.o custom_gui.o error_handlers.o about.o reset.o
 EXE = scantool
 BIN = $(EXE)$(EXT)
-SUBDIRS = codes
+CODES_TXT = $(wildcard codes/codes-*.txt)
+CODES_OUT = $(CODES_TXT:.txt=.out)
+CODES = codes.dat
 
 all: $(BIN) $(SUBDIRS)
 
 ifdef MINGDIR
 endif
-
-$(SUBDIRS):
-	$(MAKE) -C $@
 
 $(BIN): $(OBJ)
 	$(CC) $(CFLAGS) -o $(BIN) $(OBJ) $(LDFLAGS) $(LIBS)
@@ -64,20 +63,40 @@ release:
 	make RELEASE=1
 endif
 
-install: $(BIN) $(SUBDIRS)
+install: $(BIN) $(CODES)
 	install -D $(BIN) $(DESTDIR)/usr/bin/$(BIN)
 	install -D -m 0644 $(EXE).dat $(DESTDIR)/usr/share/$(EXE)/$(EXE).dat
-	install -D -m 0644 codes/codes.dat $(DESTDIR)/usr/share/$(EXE)/codes.dat
+	install -D -m 0644 $(CODES) $(DESTDIR)/usr/share/$(EXE)/codes.dat
 
 clean:
-	$(MAKE) -C codes clean
-	rm -f $(OBJ) $(BIN) $(CODES)
+	rm -f $(OBJ) $(BIN)
 
 veryclean: clean
-	rm -f $(BIN)
+	rm -f $(CODES_OUT) $(CODES)
 
 scantool.res: scantool.rc scantool.ico
 	windres -O coff -o scantool.res -i scantool.rc
+
+
+# Inject origin column from public codes.
+codes/%.out: codes/%.txt
+	# Inject column 2 based on file name.
+	set -e; \
+	origin=$$(echo $< | cut -d- -f2 | cut -d. -f1); \
+	awk -F"\t" '{out=$$1"\t'$$origin'"; for (i=2;i<=NF;i++) { out=out"\t"$$i }; print out}' $< > $@
+
+# Build Allegro objects based on code prefix.
+$(CODES): $(CODES_OUT)
+	# Use only unique entries, without ;-prefixed comments.
+	sort -u $^ | grep -v '^;' >codes-all.out
+	rm -f $@.new
+	set -e; for code in $$(cut -c1 codes-all.out | sort -u); do \
+		lower=$$(echo $$code | tr A-Z a-z); \
+		grep ^$$code codes-all.out > $${lower}codes; \
+		dat -t CDEF -a $@.new $${lower}codes; \
+		rm -f $${lower}codes ; \
+	done
+	mv $@.new $@
 
 main.o: main.c globals.h main_menu.h error_handlers.h options.h serial.h version.h
 	$(CC) $(CFLAGS) -c main.c
@@ -112,4 +131,4 @@ reset.o: reset.c globals.h custom_gui.h main_menu.h serial.h reset.h
 get_port_names.o: get_port_names.c get_port_names.h
 	$(CC) $(CFLAGS) -c get_port_names.c
 
-.PHONY: all install clean $(SUBDIRS)
+.PHONY: all install clean veryclean

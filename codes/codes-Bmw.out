@@ -1,0 +1,250 @@
+P1083	Bmw	Fuel Control Mixture Lean (Bank 1 Sensor 1)
+P1084	Bmw	Fuel Control Mixture Rich (Bank 1 Sensor 1)
+P1085	Bmw	Fuel Control Mixture Lean (Bank 2 Sensor 1)
+P1086	Bmw	Fuel Control Mixture Rich (Bank 2 Sensor 1)
+P1087	Bmw	O2 Sensor Circuit Slow Response in Lean Control Range (Bank 1 Sensor 1)
+P1088	Bmw	O2 Sensor Circuit Slow Response in Rich Control Range (Bank 1 Sensor 1)
+P1089	Bmw	O2 Sensor Circuit Slow Response in Lean Control Range (Bank 1 Sensor 2)
+P1090	Bmw	Pre-Catalyst Fuel Trim Too Lean Bank 1
+P1091	Bmw	Pre-Catalyst Fuel Trim Too Rich Bank 1
+P1092	Bmw	Pre-Catalyst Fuel Trim Too Lean Bank 2
+P1093	Bmw	Pre-Catalyst Fuel Trim Too Rich Bank 2
+P1094	Bmw	O2 Sensor Circuit Slow Response in Rich Control Range (Bank 2 Sensor 1)
+P1095	Bmw	O2 Sensor Circuit Slow Switching From Lean to Rich (Bank 1 Sensor 1)
+P1096	Bmw	O2 Sensor Circuit Slow Switching From Lean to Rich (Bank 2 Sensor 1)
+P1097	Bmw	O2 Sensor Circuit Slow Response after Coast Down Fuel Cutoff (Bank 1 Sensor 1)
+P1098	Bmw	O2 Sensor Circuit Slow Response after Coast Down Fuel Cutoff (Bank 2 Sensor 2)
+P1111	Bmw	Engine Coolant Temperature Radiator Outlet Sensor Low Input
+P1112	Bmw	Engine Coolant Temperature Radiator Outlet Sensor High Input
+P1115	Bmw	Coolant Temperature Sensor Plausibility
+P1116	Bmw	Mass Or Volume Air Flow Circuit Range/Performance Problem (Bank 2)
+P1117	Bmw	Mass Or Volume Air Flow Circuit Low Input (Bank 2)
+P1118	Bmw	Mass Or Volume Air Flow Circuit High Input (Bank 2)
+P1120	Bmw	Pedal Position Sensor Circuit
+P1121	Bmw	Pedal Position 1 Range/Performance Problem
+P1122	Bmw	Pedal Position 1 Low Input
+P1123	Bmw	Pedal Position 1 High Input
+P1132	Bmw	O2 Sensor Heater Control Circuit (Bank 1 Sensor 1)
+P1133	Bmw	O2 Sensor Heater Control Circuit (Bank 2 Sensor 1)
+P1134	Bmw	O2 Sensor Heater Circuit Signal Intermittent (Bank 1 Sensor 2)
+P1135	Bmw	O2 Sensor Heater Circuit Low Voltage (Bank 1 Sensor 1)
+P1136	Bmw	O2 Sensor Heater Circuit High Voltage (Bank 1 Sensor 1)
+P1137	Bmw	O2 Sensor Heater Circuit Signal Intermittant (Bank 1 Sensor 2)
+P1138	Bmw	O2 Sensor Heater Circuit Low Voltage (Bank 1 Sensor 2)
+P1139	Bmw	O2 Sensor Heater Circuit High Voltage (Bank 1 Sensor 2)
+P1140	Bmw	Mass or Volume Air Flow Circuit Range/Performance Problem
+P1145	Bmw	Solenoid Valve Running Losses Control Circuit Electrical
+P1151	Bmw	O2 Sensor Heater Circuit Signal Intermittant (Bank 2 Sensor 1)
+P1152	Bmw	O2 Sensor Heater Circuit Low Voltage (Bank 2 Sensor 1)
+P1153	Bmw	O2 Sensor Heater Circuit High Voltage (Bank 2 Sensor 1)
+P1155	Bmw	O2 Sensor Heater Circuit Intermittant (Bank 2 Sensor 2)
+P1156	Bmw	O2 Sensor Heater Circuit Low Voltage (Bank 2 Sensor 2)
+P1157	Bmw	O2 Sensor Heater Circuit High Voltage (Bank 2 Sensor 2)
+P1158	Bmw	Fuel Trim Additve Bank 1 Low
+P1159	Bmw	Fuel Trim Additve Bank 1 High
+P1160	Bmw	Fuel Trim Additve Bank 2 Low
+P1161	Bmw	Fuel Trim Additve Bank 2 High
+P1162	Bmw	Fuel Trim Additve Per Ignition Bank 1 Low
+P1163	Bmw	Fuel Trim Additve Per Ignition Bank 1 High
+P1164	Bmw	Fuel Trim Additve Per Ignition Bank 2 Low
+P1165	Bmw	Fuel Trim Additve Per Ignition Bank 2 High
+P1174	Bmw	Fuel Trim Adaptation Additve Bank 1 Malfunction
+P1175	Bmw	Fuel Trim Adaptation Additve Bank 2 Malfunction
+P1176	Bmw	O2 Sensor Slow Response Bank 1
+P1177	Bmw	O2 Sensor Slow Response Bank 2
+P1178	Bmw	O2 Sensor Signal Circuit Slow Switching From Rich to Lean (Bank 1 Sensor 1)
+P1179	Bmw	O2 Sensor Signal Circuit Slow Switching From Rich to Lean (Bank 2 Sensor 1)
+P1180	Bmw	O2 Sensor Signal Circuit Slow Switching From Rich to Lean (Bank 1 Sensor 2)
+P1181	Bmw	O2 Sensor Signal Circuit Slow Switching From Rich to Lean (Bank 2 Sensor 2)
+P1182	Bmw	O2 Sensor (Bank 1 Sensor 2) Open Circuit During Coast Down Fuel Cut-off
+P1183	Bmw	O2 Sensor (Bank 2 Sensor 2) Open Circuit During Coast Down Fuel Cut-off
+P1186	Bmw	O2 Sensor Heater Control Circuit (Bank 1 Sensor 2)
+P1187	Bmw	O2 Sensor Heater Control Circuit (Bank 2 Sensor 2)
+P1188	Bmw	Fuel Control (Bank 1 Sensor 1)
+P1189	Bmw	Fuel Control (Bank 2 Sensor 1)
+P1190	Bmw	Pre-catalyst Fuel Trim System Bank 1
+P1191	Bmw	Pre-catalyst Fuel Trim System Bank 2
+P1192	Bmw	Post-catalyst Fuel Trim System Bank 1
+P1193	Bmw	Post-catalyst Fuel Trim System Bank 2
+P1221	Bmw	Pedal Position Sensor 2 Range/Performance Problem
+P1222	Bmw	Pedal Position Sensor 2 Low Input
+P1223	Bmw	Pedal Position Sensor 2 High Input
+P1270	Bmw	Control Module Self-Test, Torque Monitoring
+P1271	Bmw	Ambient Air Pressure Sensor Electrical
+P1283	Bmw	Switching Solenoid for Air Assisted Injection Valves Bank 1 Control Circuit Electrical
+P1284	Bmw	Switching Solenoid for Air Assisted Injection Valves Bank 1 Control Circuit Signal Low
+P1285	Bmw	Switching Solenoid for Air Assisted Injection Valves Bank 1 Control Circuit Signal High
+P1287	Bmw	Switching Solenoid for Air Assisted Injection Valves Bank 2 Control Circuit Electrical
+P1288	Bmw	Switching Solenoid for Air Assisted Injection Valves Bank 2 Control Circuit Signal Low
+P1289	Bmw	Switching Solenoid for Air Assisted Injection Valves Bank 2 Control Circuit Signal High
+P1313	Bmw	"A" Camshaft Position Plausibility
+P1317	Bmw	"B" Camshaft Position Plausibility
+P1327	Bmw	Knock Sensor 2 (Bank 1) Low Input
+P1328	Bmw	Knock Sensor 2 (Bank 1) High Input
+P1332	Bmw	Knock Sensor 4 Low Input
+P1333	Bmw	Knock Sensor 4 High Input
+P1340	Bmw	Multiple Cylinder Misfire During Start
+P1341	Bmw	Multiple Cylinder Misfire With Fuel Cut-off
+P1342	Bmw	Misfire During Start Cylinder 1
+P1343	Bmw	Misfire Cylinder 1 With Fuel Cut-off
+P1344	Bmw	Misfire During Start Cylinder 2
+P1345	Bmw	Misfire Cylinder 2 With Fuel Cut-off
+P1346	Bmw	Misfire During Start Cylinder 3
+P1347	Bmw	Misfire Cylinder 3 With Fuel Cut-off
+P1348	Bmw	Misfire During Start Cylinder 4
+P1349	Bmw	Misfire Cylinder 4 With Fuel Cut-off
+P1350	Bmw	Misfire During Start Cylinder 5
+P1351	Bmw	Misfire Cylinder 5 With Fuel Cut-off
+P1352	Bmw	Misfire During Start Cylinder 6
+P1353	Bmw	Misfire Cylinder 6 With Fuel Cut-off
+P1354	Bmw	Misfire During Start Cylinder 7
+P1355	Bmw	Misfire Cylinder 7 With Fuel Cut-off
+P1356	Bmw	Misfire During Start Cylinder 8
+P1357	Bmw	Misfire Cylinder 8 With Fuel Cut-off
+P1358	Bmw	Misfire During Start Cylinder 9
+P1359	Bmw	Misfire Cylinder 9 With Fuel Cut-off
+P1360	Bmw	Misfire During Start Cylinder 10
+P1361	Bmw	Misfire Cylinder 10 With Fuel Cut-off
+P1362	Bmw	Misfire During Start Cylinder 11
+P1363	Bmw	Misfire Cylinder 11 With Fuel Cut-off
+P1364	Bmw	Misfire During Start Cylinder 12
+P1365	Bmw	Misfire Cylinder 12 With Fuel Cut-off
+P1384	Bmw	Knock Sensor 3 Circuit
+P1385	Bmw	Knock Sensor 4 Circuit
+P1386	Bmw	Control Module Self-test, Knock Control Baseline Test Bank 1
+P1396	Bmw	Crankshaft Position Sensor Segment Timing Plausibility
+P1397	Bmw	Camshaft Position Sensor "B" Circuit (Bank 1)
+P1400	Bmw	Heated Catalyst Battery Voltage or Current too Low During Heating (Bank 1)
+P1401	Bmw	Heated Catalyst Current too High During Heating (Bank 1)
+P1402	Bmw	Heated Catalyst Power Switch Overtemperature Condition (Bank 1)
+P1403	Bmw	Carbon Canister Shut Off valve Control Circuit Electrical
+P1404	Bmw	Heated Catalyst Current too High During Heating (Bank 2)
+P1405	Bmw	Heated Catalyst Power Switch Overtemperature Condition (Bank 2)
+P1406	Bmw	Heated Catalyst Internal Control Module Checksum/ROM Error
+P1413	Bmw	Secondary Air Injection Pump Relay Control Circuit Signal Low
+P1414	Bmw	Secondary Air Injection System Monitor Circuit High
+P1420	Bmw	Secondary Air Valve Control Circuit Electrical
+P1421	Bmw	Secondary Air System Bank 1
+P1422	Bmw	Secondary Air System Bank 2
+P1432	Bmw	Secondary Air Injection System Incorrect Flow Detected
+P1438	Bmw	Purge Control Valve Control Open Circuit
+P1439	Bmw	Purge Control Valve Control Circuit Signal Low
+P1440	Bmw	Purge Control Valve Control Circuit Signal High
+P1441	Bmw	Leakage Diagnostic Pump Control Open Circuit
+P1442	Bmw	Leakage Diagnostic Pump Control Circuit Signal Low
+P1443	Bmw	Leakage Diagnostic Pump Control Circuit Signal High
+P1444	Bmw	Diagnostic Module Tank Leakage (DM-TL) Pump Control Open Circuit
+P1445	Bmw	Diagnostic Module Tank Leakage (DM-TL) Pump Control Circuit Signal Low
+P1446	Bmw	Diagnostic Module Tank Leakage (DM-TL) Pump Control Circuit Signal High
+P1447	Bmw	Diagnostic Module Tank Leakage (DM-TL) Pump Too High During Switching
+P1448	Bmw	Diagnostic Module Tank Leakage (DM-TL) Pump Too Low During Switching
+P1449	Bmw	Diagnostic Module Tank Leakage (DM-TL) Pump Too High
+P1450	Bmw	Diagnostic Module Tank Leakage (DM-TL) Switching Solenoid Open Circuit
+P1451	Bmw	Diagnostic Module Tank Leakage (DM-TL) Switching Solenoid Control Circuit Signal Low
+P1452	Bmw	Diagnostic Module Tank Leakage (DM-TL) Switching Solenoid Control Circuit Signal High
+P1453	Bmw	Secondary Air Injection Pump Relay Control Circuit Electrical
+P1454	Bmw	Secondary Air Injection Pump With Series Resistor Control Circuit Electrical
+P1456	Bmw	Heated Catalyst Heater Power Supply Open Circuit (Bank 1)
+P1457	Bmw	Heated Catalyst Heater Power Switch Temperature Sensor Electrical (Bank 1)
+P1459	Bmw	Heated Catalyst Heater Power Supply Open Circuit (Bank 2)
+P1460	Bmw	Heated Catalyst Heater Power Switch Temperature Sensor Electrical (Bank 2)
+P1461	Bmw	Heated Catalyst Gate Voltage Signal Low
+P1462	Bmw	Heated Catalyst Internal Control Module Checksum/ROM Error
+P1463	Bmw	Heated Catalyst Battery Temperature Sensor 1 Electrical
+P1464	Bmw	Heated Catalyst Battery Temperature Sensor 2 Electrical
+P1465	Bmw	Heated Catalyst Battery Temperature Sensor 1 or 2 Plausibility
+P1466	Bmw	Heated Catalyst Power Switch Temperature Sensor Plausibility
+P1467	Bmw	Heated Catalyst Comparison Battery Voltages of Power Switches Plausibility
+P1468	Bmw	Heated Catalyst Battery Disconnecting Switch Plausibility
+P1470	Bmw	Leakage Diagnostic Pump Control Circuit Electrical
+P1472	Bmw	Diagnostic Module Tank leakage (DM-TL) Switching Solenoid Control Circuit Electrical
+P1473	Bmw	Diagnostic Module Tank leakage (DM-TL) Pump Current Plausibility
+P1475	Bmw	Leakage Diagnostic Pump Reed Switch Did Not Close
+P1476	Bmw	Leakage Diagnostic Pump Clamped Tube
+P1477	Bmw	Leakage Diagnostic Pump Reed Switch Did Not Open
+P1500	Bmw	Idle Speed Control Valve Stuck Open
+P1501	Bmw	Idle Speed Control Valve Stuck Closed
+P1502	Bmw	Idle Speed Control Valve Closing Solenoid Control Circuit Signal High or Low
+P1503	Bmw	Idle Speed Control Valve Closing Solenoid Control Circuit Signal Low
+P1504	Bmw	Idle Speed Control Valve Closing Solenoid Control Open Circuit
+P1505	Bmw	Idle Speed Control Valve Closing Solenoid Control Circuit Electrial
+P1506	Bmw	Idle Speed Control Valve Open Solenoid Control Circuit Signal High
+P1507	Bmw	Idle Speed Control Valve Open Solenoid Control Circuit Signal Low
+P1508	Bmw	Idle Speed Control Valve Opening Solenoid Control Open Circuit
+P1509	Bmw	Idle Speed Control Valve Opening Solenoid Control Circuit Electrial
+P1510	Bmw	Idle Speed Control Valve Stuck
+P1511	Bmw	DISA Control Circuit Electrical
+P1512	Bmw	DISA Control Circuit Signal Low
+P1513	Bmw	DISA Control Circuit Signal High
+P1519	Bmw	"A" Camshaft Position Actuator Bank 1
+P1520	Bmw	"B" Camshaft Position Actuator Bank 1
+P1522	Bmw	"A" Camshaft Position Actuator Bank 2
+P1523	Bmw	"A" Camshaft Position Actuator Signal Low Bank 1
+P1524	Bmw	"A" Camshaft Position Actuator Signal High Bank 1
+P1525	Bmw	"A" Camshaft Position Actuator Control Open Circuit Bank 1
+P1526	Bmw	"A" Camshaft Position Actuator Control Open Circuit Bank 2
+P1527	Bmw	"A" Camshaft Position Actuator Control Circuit Signal Low Bank 1
+P1528	Bmw	"A" Camshaft Position Actuator Control Circuit Signal High Bank 1
+P1529	Bmw	"B" Camshaft Position Actuator Control Circuit Signal Low Bank 1
+P1530	Bmw	"B" Camshaft Position Actuator Control Circuit Signal High Bank 1
+P1531	Bmw	"B" Camshaft Position Actuator Control Open Circuit Bank 1
+P1532	Bmw	"B" Camshaft Position Actuator Control Open Circuit Bank 2
+P1533	Bmw	"B" Camshaft Position Actuator Control Circuit Signal Low Bank 2
+P1534	Bmw	"B" Camshaft Position Actuator Control Circuit Signal High Bank 2
+P1540	Bmw	Pedal Position Sensor
+P1541	Bmw	Pedal Position Sensor Double Error
+P1542	Bmw	Pedal Position Sensor Electrical
+P1543	Bmw	Pedal Position Sensor
+P1544	Bmw	Pedal Position Sensor
+P1545	Bmw	Pedal Position Sensor
+P1546	Bmw	Pedal Position Sensor
+P1550	Bmw	Idle Speed Control valve Closing Solenoid Control Circuit Electrical
+P1551	Bmw	"A" Camshaft Position Actuator Control Open Circuit Bank 1
+P1552	Bmw	"A" Camshaft Position Actuator Control Open Circuit Bank 1
+P1556	Bmw	"A" Camshaft Position Actuator Control Open Circuit Bank 1
+P1560	Bmw	"B" Camshaft Position Actuator Control Open Circuit Bank 1
+P1564	Bmw	Control Module Selection
+P1565	Bmw	"B" Camshaft Position Actuator Control Open Circuit Bank 1
+P1569	Bmw	"A" Camshaft Position Actuator Control Open Circuit Bank 2
+P1580	Bmw	Throttle Valve Mechanically Stuck
+P1581	Bmw	"B" Camshaft Position Actuator Control Open Circuit Bank 2
+P1589	Bmw	Control Module Self Test, Knock Control Test Pulse Bank 1
+P1593	Bmw	DISA Control Circuit Electrical
+P1594	Bmw	"B" Camshaft Position Actuator Control Open Circuit Bank 2
+P1602	Bmw	Control Module Self Test, Control Module Defective
+P1603	Bmw	Control Module Self Test, Torque Monitoring
+P1604	Bmw	Control Module Self Test, Speed Monitoring
+P1607	Bmw	CAN Version
+P1608	Bmw	Serial Communicating Link Control Module
+P1609	Bmw	Serial Communicating Link EML
+P1611	Bmw	Serial Communicating Link Transmission Control Module
+P1619	Bmw	MAP Cooling Control Circuit Signal Low
+P1620	Bmw	MAP Cooling Control Circuit Signal High
+P1622	Bmw	MAP Cooling Control Circuit Electrical
+P1623	Bmw	Pedal Position Sensor Potentiometer Supply
+P1624	Bmw	Pedal Position Sensor Potentiometer Supply Channel 1 Electrical
+P1625	Bmw	Pedal Position Sensor Potentiometer Supply Channel 2 Electrical
+P1632	Bmw	Throttle Valve Adaptation; Adaptation Condition Not Met
+P1633	Bmw	Throttle Valve Adaptation; Limp Home Position
+P1634	Bmw	Throttle Valve Adaptation; Spring Test Failed
+P1635	Bmw	Throttle Valve Adaptation; Lower Mechanical Stop Not Adapted
+P1636	Bmw	Throttle Valve Control Circuit
+P1637	Bmw	Throttle Valve Position Control; Control Deviation
+P1638	Bmw	Throttle Valve Position Control; Throttle Stuck Temporarily
+P1639	Bmw	Throttle Valve Position Control; Throttle Stuck Permanently
+P1640	Bmw	Internal Control Module (ROM/RAM) Error
+P1690	Bmw	Malfunction Indicator Lamp (MIL) Electrical
+P1734	Bmw	Pressure Control Solenoid "B" Electrical
+P1738	Bmw	Pressure Control Solenoid "C" Electrical
+P1743	Bmw	Pressure Control Solenoid "E" Electrical
+P1744	Bmw	Pressure Control Solenoid "A" Electrical
+P1746	Bmw	Transmission Control Module Output Stage
+P1747	Bmw	CAN Bus Monitoring
+P1748	Bmw	Transmission Control Module Self Test
+P1749	Bmw	Secondary Pressure Solenoid Communication Error
+P1750	Bmw	Secondary Pressure Solenoid Circuit Range/Performance
+P1751	Bmw	Secondary Pressure Solenoid Open Circuit
+P1761	Bmw	Shift Solenoid Malfunction
+P1765	Bmw	CAN Throttle Valve
+P1770	Bmw	CAN Torque Interface
+P1780	Bmw	CAN Torque Reduction

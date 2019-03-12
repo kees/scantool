@@ -1,0 +1,41 @@
+P1100	Toyota	BARO Sensor Circuit
+P1120	Toyota	Accelerator Pedal Position Sensor Circuit
+P1121	Toyota	Accelerator Pedal Position Sensor Range/Performance Problem
+P1125	Toyota	Throttle Control Motor Circuit
+P1126	Toyota	Magnetic Clutch Circuit
+P1127	Toyota	ETCS Actuator Power Source Circuit
+P1128	Toyota	Throttle Control Motor Lock
+P1129	Toyota	Electric Throttle Control System
+P1130	Toyota	Air/Fuel Sensor Circuit Range/Performance. (Bank 1 Sensor 1)
+P1133	Toyota	Air/Fuel Sensor Circuit Response. (Bank 1 Sensor 1)
+P1135	Toyota	Air/Fuel Sensor Heater Circuit Response. (Bank 1 Sensor 1)
+P1150	Toyota	Air/Fuel Sensor Circuit Range/Performance. (Bank 1 Sensor 2)
+P1153	Toyota	Air/Fuel Sensor Circuit Response. (Bank 1 Sensor 2)
+P1155	Toyota	Air/Fuel Sensor Heater Circuit. (Bank 1 Sensor 2)
+P1200	Toyota	Fuel Pump Relay Circuit
+P1300	Toyota	Igniter Circuit Malfunction - No. 1
+P1310	Toyota	Igniter Circuit Malfunction - No. 2
+P1335	Toyota	No Crankshaft Position Sensor Signal - Engine Running
+P1349	Toyota	VVT System
+P1400	Toyota	Sub-Throttle Position Sensor
+P1401	Toyota	Sub-Throttle Position Sensor Range/Performance Problem
+P1405	Toyota	Turbo Pressure Sensor Circuit
+P1406	Toyota	Turbo Pressure Sensor Range/Performance Problem
+P1410	Toyota	EGR Valve Position Sensor Circuit Malfunction
+P1411	Toyota	EGR Valve Position Sensor Circuit Range/Performance
+P1500	Toyota	Starter Signal Circuit
+P1510	Toyota	Boost Pressure Control Circuit
+P1511	Toyota	Boost Pressure Low
+P1512	Toyota	Boost Pressure High
+P1520	Toyota	Stop Lamp Switch Signal Malfunction
+P1565	Toyota	Cruise Control Main Switch Circuit
+P1600	Toyota	ECM BATT Malfunction
+P1605	Toyota	Knock Control CPU
+P1630	Toyota	Traction Control System
+P1633	Toyota	ECM
+P1652	Toyota	Idle Air Control Valve Control Circuit
+P1656	Toyota	OCV Circuit
+P1658	Toyota	Wastegate Valve Control Circuit
+P1661	Toyota	EGR Circuit
+P1662	Toyota	EGR by-pass Valve Control Circuit
+P1780	Toyota	Park/Neutral Position Switch Malfunction (Only For A/T)

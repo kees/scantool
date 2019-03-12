@@ -1,0 +1,55 @@
+P1106	Isuzu	MAP Circuit Intermittent Voltage High
+P1107	Isuzu	MAP Circuit Intermittent Voltage Low
+P1108	Isuzu	Barometric Pressure Circuit Input High
+P1111	Isuzu	IAT Sensor Circuit Intermittent Voltage High
+P1112	Isuzu	IAT Sensor Circuit Intermittent Voltage Low
+P1114	Isuzu	ECT Sensor Circuit Intermittent Voltage Low
+P1115	Isuzu	ECT Sensor Circuit Intermittent Voltage High
+P1121	Isuzu	TP Sensor Circuit Intermittent Voltage High
+P1122	Isuzu	TP Sensor Circuit Intermittent Voltage Low
+P1133	Isuzu	H02S Insufficient Switching Bank 1 Sensor 1
+P1134	Isuzu	H02S Transition Time Ratio Bank 1 Sensor 1
+P1153	Isuzu	H02S Insufficient Switching Bank 2 Sensor 1
+P1154	Isuzu	H02S Transition Time Ratio Bank 2 Sensor 1
+P1171	Isuzu	Fuel System Lean During Acceleration
+P1297	Isuzu	Electrical Load Detector Circuit Input Low
+P1298	Isuzu	Electrical Load Detector Circuit Input High
+P1300	Isuzu	Random Misfire
+P1336	Isuzu	CKP System Variation Not Learned
+P1359	Isuzu	CKP/TDC Sensor Disconnected
+P1361	Isuzu	TDC Sensor Intermittent Interruption
+P1362	Isuzu	TDC Sensor No Signal
+P1380	Isuzu	ABS Rough Road System Fault
+P1381	Isuzu	Cylinder Position Sensor Intermittent Interruption, Misfire Detected (Except 1998 Rodeo)
+P1381	Isuzu	ABS Rough Road Class 2 Serial Data Fault Or Link Error (1998 Rodeo)
+P1382	Isuzu	Cylinder Position Sensor No Signal
+P1390	Isuzu	G Sensor Circuit Intermittent Voltage Low
+P1391	Isuzu	G Sensor Performance
+P1392	Isuzu	G Sensor Voltage Low
+P1393	Isuzu	G Sensor Voltage High
+P1394	Isuzu	G Sensor Intermittent Voltage High
+P1404	Isuzu	EGR Valve Stuck Closed
+P1406	Isuzu	EGR Valve Pintle Position Circuit
+P1441	Isuzu	EVAP System Flow During Non-Purge
+P1442	Isuzu	EVAP Vacuum Switch Voltage High During Ignition On
+P1459	Isuzu	EVAP Emission Purge Flow Switch Malfunction
+P1491	Isuzu	EGR Valve Lift Insufficient Detected
+P1498	Isuzu	EGR Valve Lift Sensor Voltage High
+P1508	Isuzu	IAC System RPM Low
+P1509	Isuzu	IAC System RPM High
+P1546	Isuzu	A/C Compressor Clutch Output Circuit Malfunction
+P1548	Isuzu	A/C Compressor Clutch Output Circuit Malfunction
+P1607	Isuzu	PCM Internal Circuit Failure "A"
+P1618	Isuzu	SPI Communications Error
+P1625	Isuzu	PCM Unexpected Reset
+P1627	Isuzu	PCM A/D Conversion Malfunction
+P1635	Isuzu	5 Volt Reference Voltage Circuit Malfunction
+P1640	Isuzu	ODM 1 Input Voltage High (Except 1998 Rodeo)
+P1640	Isuzu	ODM Output "A" Circuit Fault (1998 Rodeo)
+P1650	Isuzu	Quad Driver Module "A" Fault
+P1790	Isuzu	Trans ROM Checksum Error
+P1792	Isuzu	Trans EEPROM Checksum Error
+P1835	Isuzu	Trans Kickdown Switch Malfunction
+P1850	Isuzu	Brake Band Apply Solenoid Malfunction
+P1860	Isuzu	TCC PWM Solenoid Circuit Failure
+P1870	Isuzu	Transmission Component Slipping

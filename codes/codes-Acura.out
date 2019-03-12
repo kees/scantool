@@ -1,0 +1,53 @@
+P1106	Acura	BARO Sensor Circuit Range/Performance Malfunction
+P1107	Acura	BARO Circuit Low Input
+P1108	Acura	BARO Circuit High Input
+P1121	Acura	Throttle Position Lower Than Expected
+P1122	Acura	Throttle Position Higher Than Expected
+P1128	Acura	MAP Lower Than Expected
+P1129	Acura	MAP Higher Than Expected
+P1259	Acura	VTEC System Malfunction
+P1297	Acura	ELD Circuit Low Input
+P1298	Acura	ELD Circuit High Input
+P1300	Acura	Random Misfire
+P1336	Acura	Crankshaft Speed Fluctuation Sensor Intermittant Interruption
+P1337	Acura	Crankshaft Speed Fluctuation Sensor No Signal
+P1359	Acura	Crankshaft Position/TDC/Cylinder Position Sensor Connector Disconnection
+P1361	Acura	TDC Sensor Intermittent Interruption
+P1362	Acura	TDC 1 Sensor No Signal
+P1366	Acura	TDC 2 Sensor Intermittent
+P1367	Acura	TDC 2 Sensor No Signal
+P1381	Acura	Cylinder Position Sensor Intermittant Inturruption
+P1382	Acura	Cylinder Position Sensor No Signal
+P1456	Acura	EVAP System Leak Detected (Fuel Tank System)
+P1457	Acura	EVAP Control System Leak Detected (Control Canister System)
+P1491	Acura	EGR Valve Lift Insufficient Detected
+P1498	Acura	Voltage Problem In EGR Valve Position Sensor Circuit
+P1508	Acura	Idle Air Control Valve Circuit Failure
+P1519	Acura	IAC Valve Circuit Failure
+P1607	Acura	ECM/PCM Internal Circuit Failure
+P1656	Acura	Automatic Transaxle
+P1660	Acura	A/T FI Data Line Failure
+P1676	Acura	FPTDR Signal Line Failure
+P1678	Acura	FPTDR Signal Line Failure
+P1681	Acura	A/T FI Signal A Low Input
+P1682	Acura	A/T FI Signal A High Input
+P1686	Acura	A/T FI Signal B Low Input
+P1687	Acura	A/T FI Signal B High Input
+P1705	Acura	Automatic Transaxle
+P1706	Acura	Automatic Transaxle
+P1709	Acura	Automatic Transaxle
+P1710	Acura	Automatic Transaxle
+P1713	Acura	Automatic Transaxle
+P1738	Acura	Automatic Transaxle
+P1739	Acura	Automatic Transaxle
+P1740	Acura	Automatic Transaxle
+P1753	Acura	Automatic Transaxle
+P1758	Acura	Automatic Transaxle
+P1768	Acura	Automatic Transaxle
+P1773	Acura	Automatic Transaxle
+P1778	Acura	Automatic Transaxle
+P1786	Acura	Automatic Transaxle
+P1790	Acura	Automatic Transaxle
+P1791	Acura	Automatic Transaxle
+P1792	Acura	Automatic Transaxle
+P1794	Acura	Automatic Transaxle

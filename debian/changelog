@@ -1,7 +1,7 @@
 scantool (2.0-1) unstable; urgency=medium
 
-  * Switch source package to new home, which adds all outstanding
-    patches.
+  * Update to latest "upstream" release, which incorporates all
+    debian patches (Closes: #919201).
   * debian/control:
     - bump standards version: compat to 12.
     - update homepage
