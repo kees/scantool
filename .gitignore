@@ -1,2 +1,6 @@
 *.o
 scantool
+scantool-*.tar.*
+debian/debhelper-build-stamp
+debian/files
+debian/scantool.substvars
