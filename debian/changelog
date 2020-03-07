@@ -1,3 +1,14 @@
+scantool (2.0-2) unstable; urgency=medium
+
+  * debian/patches/libm-link.patch:
+    - add missing linkage against libm (Closes: #935527), thanks to
+      Andreas Ronnquist <gusnan@debian.org>, and Steve Langasek
+      <steve.langasek@ubuntu.com>.
+  * debian/control:
+    - bumps standards version to 4.5.0: no changes
+
+ -- Kees Cook <kees@debian.org>  Fri, 06 Mar 2020 19:41:27 -0800
+
 scantool (2.0-1) unstable; urgency=medium
 
   * Update to latest "upstream" release, which incorporates all

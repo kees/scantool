@@ -3,7 +3,7 @@ Section: electronics
 Priority: optional
 Maintainer: Kees Cook <kees@debian.org>
 Build-Depends: debhelper-compat (= 12), liballegro4-dev
-Standards-Version: 4.3
+Standards-Version: 4.5.0
 Homepage: https://github.com/kees/scantool
 
 Package: scantool
