@@ -27,7 +27,7 @@ ifdef DZCOMM
    EXT = .exe
 else
    DEFINES += -DTERMIOS
-   LIBS = $(AL_LIBS)
+   LIBS = $(AL_LIBS) -lm
    EXT =
 endif
 endif
