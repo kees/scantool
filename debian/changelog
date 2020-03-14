@@ -1,3 +1,11 @@
+scantool (2.1-1) unstable; urgency=medium
+
+  * New upstream version:
+    - debian/patches/libm-link.patch: incorporated upstream
+  * debian/watch: Fix missing URL elements.
+
+ -- Kees Cook <kees@debian.org>  Sat, 14 Mar 2020 09:16:30 -0700
+
 scantool (2.0-2) unstable; urgency=medium
 
   * debian/patches/libm-link.patch:
