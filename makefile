@@ -104,37 +104,19 @@ $(CODES): $(CODES_TXT)
 	rm -f codes-all.out
 	mv $@.new $@
 
-main.o: main.c globals.h main_menu.h error_handlers.h options.h serial.h version.h
-	$(CC) $(CFLAGS) -c main.c
+main.o: globals.h main_menu.h error_handlers.h options.h serial.h version.h
+main_menu.o: globals.h about.h trouble_code_reader.h sensors.h options.h serial.h custom_gui.h main_menu.h
+serial.o: globals.h serial.h
+options.o: globals.h custom_gui.h serial.h options.h
+sensors.o: globals.h serial.h options.h error_handlers.h sensors.h custom_gui.h
+trouble_code_reader.o: globals.h serial.h options.h custom_gui.h error_handlers.h trouble_code_reader.h
+custom_gui.o: globals.h custom_gui.h
+error_handlers.o: globals.h error_handlers.h
+about.o: globals.h custom_gui.h serial.h sensors.h options.h version.h about.h
+reset.o: globals.h custom_gui.h main_menu.h serial.h reset.h
+get_port_names.o: get_port_names.h
 
-main_menu.o: main_menu.c globals.h about.h trouble_code_reader.h sensors.h options.h serial.h custom_gui.h main_menu.h
-	$(CC) $(CFLAGS) -c main_menu.c
-
-serial.o: serial.c globals.h serial.h
-	$(CC) $(CFLAGS) -c serial.c
-
-options.o: options.c globals.h custom_gui.h serial.h options.h
-	$(CC) $(CFLAGS) -c options.c
-
-sensors.o: sensors.c globals.h serial.h options.h error_handlers.h sensors.h custom_gui.h
-	$(CC) $(CFLAGS) -c sensors.c
-
-trouble_code_reader.o: trouble_code_reader.c globals.h serial.h options.h custom_gui.h error_handlers.h trouble_code_reader.h
-	$(CC) $(CFLAGS) -c trouble_code_reader.c
-
-custom_gui.o: custom_gui.c globals.h custom_gui.h
-	$(CC) $(CFLAGS) -c custom_gui.c
-
-error_handlers.o: error_handlers.c globals.h error_handlers.h
-	$(CC) $(CFLAGS) -c error_handlers.c
-
-about.o: about.c globals.h custom_gui.h serial.h sensors.h options.h version.h about.h
-	$(CC) $(CFLAGS) -c about.c
-
-reset.o: reset.c globals.h custom_gui.h main_menu.h serial.h reset.h
-	$(CC) $(CFLAGS) -c reset.c
-
-get_port_names.o: get_port_names.c get_port_names.h
-	$(CC) $(CFLAGS) -c get_port_names.c
+%.o: %.c
+	$(CC) $(CPPFLAGS) $(CFLAGS) -c $<
 
 .PHONY: all install tarball clean veryclean
