@@ -1,3 +1,2 @@
 version=4
-opts=filenamemangle=s/.+\/v?(\d\S+)\.tar\.bz2/<project>-$1\.tar\.bz2/ \
-  https://github.com/kees/scantool/tags .*/v?(\d\S+)\.tar\.bz2
+https://github.com/kees/scantool/releases .*/scantool-(\d\S+)\.tar\.bz2
