@@ -16,6 +16,13 @@ END_COLOR_DEPTH_LIST
 
 #define WINDOW_TITLE   "ScanTool.net " SCANTOOL_VERSION_EX_STR
 
+int display_mode;
+char *code_defs_file_name;
+char log_file_name[20];
+#ifdef LOG_COMMS
+char comm_log_file_name[20];
+#endif
+DATAFILE *datafile;
 
 void write_log(const char *log_string)
 {
@@ -47,6 +54,7 @@ void write_comm_log(const char *marker, const char *data)
 static void init()
 {
    char temp_buf[256];
+   char *data_file_name;
 
    /* initialize some varaibles with default values */
    if (asprintf(&options_file_name, "%s/.scantoolrc", getenv("HOME")) < 0) {
