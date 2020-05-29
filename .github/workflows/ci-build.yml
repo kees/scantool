@@ -14,10 +14,12 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: builddep
-      run:  apt -qy install debhelper liballegro4-dev
+      run: |
+        uname -a
+        id
+        sudo apt -qy install debhelper liballegro4-dev
     - name: make
       run: |
-        id
         gcc --version
         ld --version
         make
