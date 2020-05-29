@@ -283,7 +283,6 @@ int Reset_get_reply_to_detect_protocol(char *response)
 /* We don't care if it's a clone; let it run anyway. */
 int Reset_handle_clone()
 {
-   is_not_genuine_scan_tool = FALSE;
    return RESET_START_ECU_TIMER;
 }
 
