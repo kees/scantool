@@ -2,6 +2,7 @@
 #include "globals.h"
 #include "error_handlers.h"
 
+char temp_error_buf[256];
 
 void fatal_error(char *msg)
 {
