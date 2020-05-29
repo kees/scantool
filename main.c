@@ -48,8 +48,6 @@ static void init()
 {
    char temp_buf[256];
 
-   is_not_genuine_scan_tool = FALSE;
-   
    /* initialize some varaibles with default values */
    if (asprintf(&options_file_name, "%s/.scantoolrc", getenv("HOME")) < 0) {
       perror("asprintf");

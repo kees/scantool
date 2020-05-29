@@ -36,9 +36,6 @@
 #define C_GRAY          50
 #define C_LIGHT_GRAY    55
 
-//
-int is_not_genuine_scan_tool;
-
 // Options
 int system_of_measurements;
 int display_mode;

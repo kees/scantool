@@ -298,9 +298,5 @@ int button_desc_proc(int msg, DIALOG *d, int c)
 
 int genuine_proc(int msg, DIALOG *d, int c)
 {
-   if (msg == MSG_IDLE)
-      if (is_not_genuine_scan_tool)
-         return D_CLOSE;
-   
    return D_O_K;
 }

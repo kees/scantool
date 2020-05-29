@@ -1493,9 +1493,5 @@ void clr_time_formula(int data, char *buf)
 
 int genuine_proc(int msg, DIALOG *d, int c)
 {
-   if (msg == MSG_IDLE)
-      if (is_not_genuine_scan_tool == TRUE)
-         return D_CLOSE;
-   
    return D_O_K;
 }
