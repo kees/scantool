@@ -1,3 +1,12 @@
+scantool (2.2-0) stable; urgency=medium
+
+  * Ported to Ubuntu 20.04 LTS
+  * Pseudo-tty support
+  * Bug fixing
+  * Updated readme.txt
+
+ -- Ircama Sun 20 Mar 2021, 01:12:02, CET
+
 scantool (2.1-2) unstable; urgency=medium
 
   * debian/watch: Actually fix URL this time.

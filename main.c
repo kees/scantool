@@ -16,6 +16,20 @@ END_COLOR_DEPTH_LIST
 
 #define WINDOW_TITLE   "ScanTool.net " SCANTOOL_VERSION_EX_STR
 
+char *code_defs_file_name;
+int system_of_measurements;
+DATAFILE *datafile;
+char *options_file_name;
+char log_file_name[20];
+int is_not_genuine_scan_tool;
+int display_mode;
+char *data_file_name;
+volatile int serial_time_out;
+volatile int serial_timer_running;
+struct COMPORT comport;
+#ifdef LOG_COMMS
+char comm_log_file_name[20];
+#endif
 
 void write_log(const char *log_string)
 {
@@ -162,7 +176,10 @@ static void init()
    serial_module_init();
    write_log("OK\n");
 
-   sprintf(temp_buf, "Opening COM%i... ", comport.number + 1);
+   if (comport.number >= 1000)
+      sprintf(temp_buf, "Opening PTS%i... ", comport.number - 1000);
+   else
+      sprintf(temp_buf, "Opening COM%i... ", comport.number + 1);
    write_log(temp_buf);
    /* try opening comport (comport.status will be set) */
    open_comport();

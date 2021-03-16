@@ -1,3 +1,31 @@
+-------------------
+Revision 2021-03-16
+-------------------
+
+- pseudo-tty support: edit ~/.scantoolrc and add comport_number = 1000 + pty
+  number; for instance, for /dev/pts/3, set the following in ~/.scantoolrc:
+
+  [comm]
+  comport_number = 1003
+
+Note: when setting a pseudo-tty, only use ~/.scantoolrc and do not edit the
+serial port through the "Options" panel.
+
+Compilation with Ubuntu 20.04 LTS:
+
+sudo apt install liballegro4.4 liballegro4-dev allegro4-doc
+make clean
+make -e RELEASE=yes
+
+Compilation with Ubuntu, including logging to "comm_log.txt":
+
+make clean
+make -e LOG=yes
+
+-------------------
+Original readme.txt
+-------------------
+
 *********************************************************************
    ScanTool.net OBD-II Software v1.20 for ElmScan and OBDLink devices
    Copyright (C) 2010 ScanTool.net LLC, All Rights Reserved

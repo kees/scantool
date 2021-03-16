@@ -24,8 +24,6 @@
 #define TX_TIMEOUT_MULTIPLIER    0
 #define TX_TIMEOUT_CONSTANT      1000
 
-
-
 //timer interrupt handler for sensor data
 static void serial_time_out_handler()
 {
@@ -97,7 +95,12 @@ int open_comport()
    // Naming of serial ports 10 and higher: See
    // http://www.connecttech.com/KnowledgeDatabase/kdb227.htm
    // http://support.microsoft.com/?id=115831
-   sprintf(temp_str, "\\\\.\\COM%i", comport.number + 1);
+
+   if( comport.number >= 1000 ) {
+      sprintf(temp_str, "\\\\.\\PTS%i", comport.number-1000);
+   }
+   else
+      sprintf(temp_str, "\\\\.\\COM%i", comport.number + 1);
    com_port = CreateFile(temp_str, GENERIC_READ | GENERIC_WRITE, 0, 0, OPEN_EXISTING, 0, 0);
    if (com_port == INVALID_HANDLE_VALUE)
    {
@@ -150,10 +153,16 @@ int open_comport()
    }
 #elif TERMIOS
     char tmp[54];
-    if( comport.number < 100 )
-        snprintf(tmp, sizeof(tmp), "/dev/ttyS%d", comport.number);
-    else
-        snprintf(tmp, sizeof(tmp), "/dev/ttyUSB%d", comport.number-100);
+    if( comport.number >= 1000 ) {
+        snprintf(tmp, sizeof(tmp), "/dev/pts/%d", comport.number-1000);
+        printf("Using port %s\n", tmp);
+    }
+    else {
+      if( comport.number < 100 )
+          snprintf(tmp, sizeof(tmp), "/dev/ttyS%d", comport.number);
+      else
+          snprintf(tmp, sizeof(tmp), "/dev/ttyUSB%d", comport.number-100);
+    }
     fdtty = open( tmp, O_RDWR | O_NOCTTY );
     if (fdtty <0) { return(-1); }
 
@@ -298,6 +307,10 @@ int read_comport(char *response)
    bzero(tmp,64);
 
    FD_ZERO(&readfs);
+   if (fdtty < 0) {
+     write_log("\nWrong serial COM port. Terminating program.\n\n");
+     exit(3);
+     }
    FD_SET(fdtty, &readfs);
    while( res != 0 && fdtty != -1)
    {
