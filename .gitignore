@@ -1,4 +1,5 @@
 *.o
+codes.dat
 scantool
 scantool-*.tar.*
 debian/debhelper-build-stamp
