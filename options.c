@@ -30,6 +30,9 @@
    #define DEFAULT_BAUD_RATE               BAUD_RATE_115200
 #endif
 
+int system_of_measurements;
+char *options_file_name;
+
 typedef struct
 {
    int option_value;

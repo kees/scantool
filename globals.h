@@ -36,21 +36,13 @@
 #define C_GRAY          50
 #define C_LIGHT_GRAY    55
 
-//
-int is_not_genuine_scan_tool;
-
 // Options
-int system_of_measurements;
-int display_mode;
+extern int system_of_measurements;
+extern int display_mode;
 
 // File names
-char *options_file_name;
-char *data_file_name;
-char *code_defs_file_name;
-char log_file_name[20];
-#ifdef LOG_COMMS
-char comm_log_file_name[20];
-#endif
+extern char *options_file_name;
+extern char *code_defs_file_name;
 
 void write_log(const char *log_string);
 
@@ -58,6 +50,6 @@ void write_log(const char *log_string);
 void write_comm_log(const char *marker, const char *data);
 #endif
 
-DATAFILE *datafile;
+extern DATAFILE *datafile;
 
 #endif

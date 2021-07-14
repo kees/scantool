@@ -24,7 +24,9 @@
 #define TX_TIMEOUT_MULTIPLIER    0
 #define TX_TIMEOUT_CONSTANT      1000
 
-
+volatile int serial_time_out;
+volatile int serial_timer_running;
+struct COMPORT comport;
 
 //timer interrupt handler for sensor data
 static void serial_time_out_handler()
