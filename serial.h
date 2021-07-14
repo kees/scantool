@@ -76,14 +76,15 @@ int find_valid_response(char *buf, char *response, const char *filter, char **st
 const char *get_protocol_string(int interface_type, int protocol_id);
 int display_error_message(int error, int retry);
 
-// variables
-volatile int serial_time_out;
-volatile int serial_timer_running;
-
 struct COMPORT {
    int number;
    int baud_rate;
    int status;    // READY, NOT_OPEN, USER_IGNORED
-} comport;
+};
+
+// variables
+extern volatile int serial_time_out;
+extern volatile int serial_timer_running;
+extern struct COMPORT comport;
 
 #endif
