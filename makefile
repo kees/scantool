@@ -66,7 +66,7 @@ endif
 tarball: clean
 	ver=$(shell grep SCANTOOL_VERSION_STR version.h | cut -d'"' -f2) && \
 	mkdir -p scantool-$${ver} && \
-	git ls-tree -r master --name-only | grep -v ^debian/ | grep -v '^\.' | cpio -pdm scantool-$${ver} && \
+	git ls-tree -r trunk --name-only | grep -v ^debian/ | grep -v '^\.' | cpio -pdm scantool-$${ver} && \
 	tar jcf scantool-$${ver}.tar.bz2 scantool-$${ver} && \
 	rm -rf scantool-$${ver}
 
