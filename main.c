@@ -72,7 +72,8 @@ static void init()
    
    /* initialize hardware */
    write_log("Initializing Allegro... ");
-   allegro_init();
+   if (allegro_init() != 0)
+      fatal_error("Cannot initialize the graphical subsystem. Check DISPLAY variable.");
    write_log("OK\n");
    
    set_window_title(WINDOW_TITLE);
