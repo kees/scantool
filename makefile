@@ -3,7 +3,6 @@ AL_LIBS = $(shell allegro-config --libs)
 CFLAGS ?= -O2 -Wall
 
 ifdef DEBUGMODE
-   DEFINES = -DDEBUG
    CFLAGS += -g
    $(info ************  DEBUG OPTION ENABLED ************)
 else
