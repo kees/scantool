@@ -168,7 +168,10 @@ static void init()
    serial_module_init();
    write_log("OK\n");
 
-   sprintf(temp_buf, "Opening COM%i... ", comport.number + 1);
+   if (comport.number >= 1000)
+      sprintf(temp_buf, "Opening PTS%i... ", comport.number - 1000);
+   else
+      sprintf(temp_buf, "Opening COM%i... ", comport.number + 1);
    write_log(temp_buf);
    /* try opening comport (comport.status will be set) */
    open_comport();
