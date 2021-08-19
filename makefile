@@ -1,9 +1,11 @@
 CC = gcc
 AL_LIBS = $(shell allegro-config --libs)
-CFLAGS ?= -O2 -g -Wall
+CFLAGS ?= -O2 -Wall
 
 ifdef DEBUGMODE
    DEFINES = -DDEBUG
+   CFLAGS += -g
+   $(info ************  DEBUG OPTION ENABLED ************)
 else
 ifdef RELEASE
    CFLAGS += -O3 -fexpensive-optimizations -s
@@ -34,6 +36,11 @@ endif
 
 ifndef NOWERROR
    CFLAGS += -Werror
+endif
+
+ifdef LOG
+   DEFINES += -DLOG_COMMS
+   $(info ************  LOG OPTION ENABLED ************)
 endif
 
 ifdef DEFINES
