@@ -29,8 +29,10 @@
 #else
    #define DEFAULT_BAUD_RATE               BAUD_RATE_115200
 #endif
+#define DEFAULT_LOG_COMMS               0
 
 int system_of_measurements;
+int log_comms;
 char *options_file_name;
 
 typedef struct
@@ -303,6 +305,7 @@ void load_program_options()
    comport.number = get_config_int("comm", "comport_number", DEFAULT_COMPORT_NUMBER);
    comport.baud_rate = get_config_int("comm", "baud_rate", DEFAULT_BAUD_RATE);
    system_of_measurements = get_config_int("general", "system_of_measurements", DEFAULT_SYSTEM_OF_MEASURMENTS);
+   log_comms = get_config_int("general", "log_comms", DEFAULT_LOG_COMMS);
    if (get_config_int("general", "display_mode", DEFAULT_DISPLAY_MODE))
       display_mode |= WINDOWED_MODE_SET;
    else
@@ -317,6 +320,7 @@ void save_program_options()
       set_config_int("general", "display_mode", WINDOWED_MODE);
    else
       set_config_int("general", "display_mode", FULL_SCREEN_MODE);
+   set_config_int("general", "log_comms", log_comms);
    set_config_int("comm", "baud_rate", comport.baud_rate);
    set_config_int("comm", "comport_number", comport.number);
    flush_config_file();

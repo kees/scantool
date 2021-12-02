@@ -6,9 +6,6 @@
 #include <allegro.h>
 #include "resource.h"
 
-
-//#define LOG_COMMS   // Uncomment this line to enable serial comm logging
-
 // system_of_measurements
 #define METRIC     0
 #define IMPERIAL   1
@@ -39,6 +36,7 @@
 // Options
 extern int system_of_measurements;
 extern int display_mode;
+extern int log_comms;
 
 // File names
 extern char *options_file_name;
@@ -46,9 +44,7 @@ extern char *code_defs_file_name;
 
 void write_log(const char *log_string);
 
-#ifdef LOG_COMMS
 void write_comm_log(const char *marker, const char *data);
-#endif
 
 extern DATAFILE *datafile;
 

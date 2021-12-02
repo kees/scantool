@@ -19,15 +19,13 @@ END_COLOR_DEPTH_LIST
 int display_mode;
 char *code_defs_file_name;
 char log_file_name[20];
-#ifdef LOG_COMMS
 char comm_log_file_name[20];
-#endif
 DATAFILE *datafile;
 
 void write_log(const char *log_string)
 {
    FILE *logfile = NULL;
-   
+
    logfile = stderr;
    if (logfile == NULL)
       fatal_error("Could not open log file for writing!");
@@ -36,11 +34,12 @@ void write_log(const char *log_string)
       fclose(logfile);
 }
 
-
-#ifdef LOG_COMMS
 void write_comm_log(const char *marker, const char *data)
 {
    FILE *logfile = NULL;
+
+   if (!log_comms)
+      return;
 
    logfile = fopen(comm_log_file_name, "a");
    if (logfile == NULL)
@@ -48,8 +47,6 @@ void write_comm_log(const char *marker, const char *data)
    fprintf(logfile, "[%s]%s[/%s]\n", marker, data, marker);
    fclose(logfile);
 }
-#endif
-
 
 static void init()
 {
@@ -222,11 +219,10 @@ int main()
    remove(log_file_name);
    write_log(temp_buf);
    write_log("\n");
-#ifdef LOG_COMMS
+
    strcpy(comm_log_file_name, "comm_log.txt");
    remove(comm_log_file_name);
    write_comm_log("START_TIME", temp_buf);
-#endif
 
    sprintf(temp_buf, "Version: %s for %s\n", SCANTOOL_VERSION_STR, SCANTOOL_PLATFORM_STR);
    write_log(temp_buf);

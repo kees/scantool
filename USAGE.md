@@ -150,10 +150,10 @@ make
 ### Enabling logging
 
 In order to enable logging to a file named *"comm_log.txt"* in the
-current directory, set the *LOG* compilation flag to *YES*, like in the
-following example:
+current directory, set the *log_comms* flag to *1* in the *~/.scantoolrc*
+file:
 
-```bash
-make clean
-make LOG=yes
+```ini
+[general]
+log_comms = 1
 ```

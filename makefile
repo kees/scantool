@@ -28,10 +28,6 @@ ifndef NOWERROR
    CFLAGS += -Werror
 endif
 
-ifdef LOG
-   DEFINES += -DLOG_COMMS
-endif
-
 ifdef DEFINES
    CFLAGS += $(DEFINES)
 endif

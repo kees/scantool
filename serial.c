@@ -253,9 +253,7 @@ void send_command(const char *command)
    WriteFile(com_port, tx_buf, strlen(tx_buf), &bytes_written, 0);
    if (bytes_written != strlen(tx_buf))
    {
-#ifdef LOG_COMMS
       log_comm("TX ERROR", tx_buf);  // Log transmission error
-#endif
       return;
    }
 #elif TERMIOS
@@ -278,9 +276,7 @@ void send_command(const char *command)
    comm_port_string_send(com_port, tx_buf);
 #endif
    
-#ifdef LOG_COMMS
    write_comm_log("TX", tx_buf);
-#endif
 }
 
 
@@ -350,9 +346,7 @@ int read_comport(char *response)
    prompt_pos = strchr(response, '>');
    if (prompt_pos != NULL)
    {
-#ifdef LOG_COMMS
       write_comm_log("RX", response);
-#endif
       *prompt_pos = '\0'; // erase ">"
       return PROMPT;      // command prompt detected
    }
@@ -360,9 +354,7 @@ int read_comport(char *response)
       return EMPTY;
    else                         //otherwise,
    {
-#ifdef LOG_COMMS
       write_comm_log("RX", response);
-#endif
       return DATA;
    }
 }
