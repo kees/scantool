@@ -2,15 +2,6 @@ CC = gcc
 AL_LIBS = $(shell allegro-config --libs)
 CFLAGS ?= -O2 -Wall
 
-ifdef DEBUGMODE
-   CFLAGS += -g
-   $(info ************  DEBUG OPTION ENABLED ************)
-else
-ifdef RELEASE
-   CFLAGS += -O3 -fexpensive-optimizations -s
-endif
-endif
-
 ifdef MINGDIR
    ifdef STATICLINK
       LIBS = $(AL_LIBS)_s -lkernel32 -luser32 -lgdi32 -lcomdlg32 -lole32 -ldinput -lddraw -ldxguid -lwinmm -ldsound
@@ -39,7 +30,6 @@ endif
 
 ifdef LOG
    DEFINES += -DLOG_COMMS
-   $(info ************  LOG OPTION ENABLED ************)
 endif
 
 ifdef DEFINES
@@ -63,10 +53,10 @@ $(BIN): $(OBJ)
 
 ifdef MINGDIR
 release:
-	make RELEASE=1 STATICLINK=1
+	make STATICLINK=1
 else
 release:
-	make RELEASE=1
+	make
 endif
 
 tarball: clean

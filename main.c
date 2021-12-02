@@ -72,7 +72,8 @@ static void init()
    
    /* initialize hardware */
    write_log("Initializing Allegro... ");
-   allegro_init();
+   if (allegro_init() != 0)
+      fatal_error("Cannot initialize the graphical subsystem. Check DISPLAY variable.");
    write_log("OK\n");
    
    set_window_title(WINDOW_TITLE);
@@ -168,7 +169,10 @@ static void init()
    serial_module_init();
    write_log("OK\n");
 
-   sprintf(temp_buf, "Opening COM%i... ", comport.number + 1);
+   if (comport.number >= 1000)
+      sprintf(temp_buf, "Opening PTS%i... ", comport.number - 1000);
+   else
+      sprintf(temp_buf, "Opening COM%i... ", comport.number + 1);
    write_log(temp_buf);
    /* try opening comport (comport.status will be set) */
    open_comport();
