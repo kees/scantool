@@ -254,6 +254,8 @@ void send_command(const char *command)
 	{
 	  perror("write tty");
 	  close(fdtty);
+	  comport.status = NOT_OPEN;
+	  write_log("Error while writing to the serial COM port.\n");
 	  fdtty = -1;
 	}
 	else
@@ -300,6 +302,10 @@ int read_comport(char *response)
    bzero(tmp,64);
 
    FD_ZERO(&readfs);
+   if (fdtty < 0) {
+       comport.status = NOT_OPEN;
+       return EMPTY;
+   }
    FD_SET(fdtty, &readfs);
    while( res != 0 && fdtty != -1)
    {
