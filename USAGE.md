@@ -2,7 +2,9 @@
 
 ## Configuration file
 
-*ScanTool* saves the settings of the configuration panel in a file named *.scantoolrc* located in the home directory. Example of configuration file:
+*ScanTool* saves the settings of the configuration panel in a file named
+*.scantoolrc* located in the home directory. Example of configuration
+file:
 
 ```ini
 version = 2.1
@@ -98,7 +100,9 @@ rm ~/.scantoolrc
 
 ## Standard serial COM port
 
-A standard serial COM port in the form `/dev/ttyS<number>` is configured in *~/.scantoolrc* with the following line: `comport_number = <number>`; for instance, `/dev/ttyS3` is represented as follows in *~/.scantoolrc*:
+A standard serial COM port in the form `/dev/ttyS<number>` is configured
+in *~/.scantoolrc* with the following line: `comport_number = <number>`;
+for instance, `/dev/ttyS3` is represented as follows in *~/.scantoolrc*:
 
 ```ini
 [comm]
@@ -107,7 +111,10 @@ comport_number = 3
 
 ## USB COM port
 
-A USB COM port in the form `/dev/ttyUSB<number>` is configured in *~/.scantoolrc* with the following line: `comport_number = ` *100 + USB number*; for instance, for */dev/ttyUSB0*, set the following in *~/.scantoolrc*:
+A USB COM port in the form `/dev/ttyUSB<number>` is configured in
+*~/.scantoolrc* with the following line: `comport_number = ` *100 +
+USB number*; for instance, for */dev/ttyUSB0*, set the following in
+*~/.scantoolrc*:
 
 ```ini
 [comm]
@@ -116,39 +123,37 @@ comport_number = 100
 
 ## Pseudo-tty support
 
-To use a pseudo-tty as COM port, edit *~/.scantoolrc* and add the line `comport_number = ` *1000 + pty number*; for instance, for */dev/pts/3*, set the following in *~/.scantoolrc*:
+To use a pseudo-tty as COM port, edit *~/.scantoolrc* and add the line
+`comport_number = ` *1000 + pty number*; for instance, for */dev/pts/3*,
+set the following in *~/.scantoolrc*:
 
 ```ini
 [comm]
 comport_number = 1003
 ```
 
-Note: when setting a pseudo-tty, only edit *~/.scantoolrc* and do not try setting a PTY serial port through the *"Options"* panel of the user interface, which currently does not provide this feature.
+Note: when setting a pseudo-tty, only edit *~/.scantoolrc* and do not
+try setting a PTY serial port through the *"Options"* panel of the user
+interface, which currently does not provide this feature.
 
 ## Compilation
 
-To perform a standard compilation, set the *RELEASE* flag to *YES*. Check the following example, which also includes prerequisites:
+To perform a standard compilation, with the following example, which
+also includes prerequisites:
 
 ```bash
 sudo apt install -y liballegro4.4 liballegro4-dev allegro4-doc
 make clean
-make -e RELEASE=yes
+make
 ```
 
 ### Enabling logging
 
-In order to enable logging to a file named *"comm_log.txt"* in the current directory, set the *LOG* compilation flag to *YES*, like in the following example:
+In order to enable logging to a file named *"comm_log.txt"* in the
+current directory, set the *LOG* compilation flag to *YES*, like in the
+following example:
 
 ```bash
 make clean
-make -e RELEASE=yes LOG=yes
-```
-
-### Compilation in DEBUG mode
-
-To compile in debug mode, set the *DEBUGMODE* compilation flag to *YES* instead of using the *RELEASE* flag, like in the following example, which also includes logging to *"comm_log.txt"*:
-
-```bash
-make clean
-make -e DEBUGMODE=yes LOG=yes
+make LOG=yes
 ```
