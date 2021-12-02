@@ -382,6 +382,18 @@ void fill_comport_list()
             fclose(f);
         }
     }
+    for(i=0;i<8;i++)
+    {
+        snprintf(tmp,sizeof(tmp),"/dev/pts/%d",i);
+        f=fopen(tmp,"r");
+        if( f != NULL )
+        {
+            strcpy(comport_list_strings + nb * PORT_NAME_BUF_SIZE,tmp);
+            comport_list_numbers[nb]=1000+i;
+            nb++;
+            fclose(f);
+        }
+    }
     comport_list_size = nb;
 #else
    

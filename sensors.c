@@ -781,27 +781,18 @@ int status_proc(int msg, DIALOG *d, int c)
          {
             d->d1 = device_connected;
             d->d2 = comport.status;
-         
+
             if (comport.status == READY)
             {
                if (device_connected) {
-                  if (comport.number >= 1000)
-                     sprintf(d->dp, " PTS%i ready (device connected)", comport.number - 1000);
-                  else
-                     sprintf(d->dp, " COM%i ready (device connected)", comport.number + 1);
-               } else {
-                  if (comport.number >= 1000)
-                     sprintf(d->dp, " PTS%i ready (device not found)", comport.number - 1000);
-                  else
-                     sprintf(d->dp, " COM%i ready (device not found)", comport.number + 1);
+                  sprintf(d->dp, " %s ready (device connected)", comport.name);
                }
             }
             else {
-               if (comport.number >= 1000)
-                  sprintf(d->dp, " PTS%i could not be opened", comport.number - 1000);
-               else
-                  sprintf(d->dp, " COM%i could not be opened", comport.number + 1);
+               if (comport.name) {
+                   sprintf(d->dp, " %s could not be opened", comport.name);
                }
+            }
 
             return D_REDRAWME;
          }

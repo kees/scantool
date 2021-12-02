@@ -1,11 +1,10 @@
+#include "globals.h"
 #include <string.h>
 #include <ctype.h>
-#include "globals.h"
 #include <allegro/internal/aintern.h>
 #ifdef ALLEGRO_WINDOWS
    #include <winalleg.h>
 #elif TERMIOS
-   #include <stdio.h>
    #include <termios.h>
 #else
    #include <dzcomm.h>
@@ -89,28 +88,49 @@ int open_comport()
    DCB dcb;
    COMMTIMEOUTS timeouts;
    DWORD bytes_written;
-   char temp_str[16];
 #endif
-   
+
    if (comport.status == READY)    // if the comport is open,
       close_comport();    // close it
-   
+
+   /* Do not open comport if it has not been configured. */
+   if (comport.number < 0)
+      return -1;
+
+   /*
+    * We've left comport.name allocated just in case we want to report
+    * its failure in the sensors window. However, if we're reopening,
+    * free the old name here.
+    */
+   if (comport.name) {
+     free(comport.name);
+     comport.name = NULL;
+   }
+
 #ifdef ALLEGRO_WINDOWS
    // Naming of serial ports 10 and higher: See
    // http://www.connecttech.com/KnowledgeDatabase/kdb227.htm
    // http://support.microsoft.com/?id=115831
    if (comport.number >= 1000) {
-      sprintf(temp_str, "\\\\.\\PTS%i", comport.number - 1000);
+      if (asprintf(&comport.name, "\\\\.\\PTS%i", comport.number - 1000) < 0) {
+          perror("asprintf");
+          exit(1);
+      }
    }
-   else
-      sprintf(temp_str, "\\\\.\\COM%i", comport.number + 1);
-   com_port = CreateFile(temp_str, GENERIC_READ | GENERIC_WRITE, 0, 0, OPEN_EXISTING, 0, 0);
+   else {
+      if (asprintf(&comport.name, "\\\\.\\COM%i", comport.number + 1) < 0) {
+          perror("asprintf");
+          exit(1);
+      }
+   }
+   com_port = CreateFile(comport.name, GENERIC_READ | GENERIC_WRITE, 0, 0, OPEN_EXISTING, 0, 0);
    if (com_port == INVALID_HANDLE_VALUE)
    {
-      comport.status = NOT_OPEN; //port was not open
+      printf("Failed to open: %s\n", comport.name);
+      close_comport();    // port was not open
       return -1; // return error
    }
-   
+
    // Setup comport
    GetCommState(com_port, &dcb);
    dcb.BaudRate = comport.baud_rate;
@@ -128,7 +148,7 @@ int open_comport()
    dcb.fErrorChar = FALSE;
    dcb.fAbortOnError = FALSE;
    SetCommState(com_port, &dcb);
-   
+
    // Setup comm timeouts
    timeouts.ReadIntervalTimeout = MAXWORD;
    timeouts.ReadTotalTimeoutMultiplier = 0;
@@ -143,7 +163,7 @@ int open_comport()
    if (TX_TIMEOUT_CONSTANT > 0)
       timeouts.WriteTotalTimeoutConstant = TX_TIMEOUT_CONSTANT * TX_TIMEOUT_CONSTANT / timeouts.WriteTotalTimeoutConstant;
    SetCommTimeouts(com_port, &timeouts);
-   
+
    // If the port is Bluetooth, make sure device is active
    PurgeComm(com_port, PURGE_TXCLEAR|PURGE_RXCLEAR);
    WriteFile(com_port, "?\r", 2, &bytes_written, 0);
@@ -155,21 +175,30 @@ int open_comport()
       return -1;
    }
 #elif TERMIOS
-    char tmp[54];
     if (comport.number >= 1000) {
-        snprintf(tmp, sizeof(tmp), "/dev/pts/%d", comport.number - 1000);
-        printf("Using port %s\n", tmp);
+        if (asprintf(&comport.name, "/dev/pts/%d", comport.number - 1000) < 0) {
+            perror("asprintf");
+            exit(1);
+        }
     }
-    else {
-      if (comport.number < 100)
-          snprintf(tmp, sizeof(tmp), "/dev/ttyS%d", comport.number);
-      else
-          snprintf(tmp, sizeof(tmp), "/dev/ttyUSB%d", comport.number - 100);
+    else if (comport.number < 100) {
+        if (asprintf(&comport.name, "/dev/ttyS%d", comport.number) < 0) {
+            perror("asprintf");
+            exit(1);
+        }
+    } else {
+        if (asprintf(&comport.name, "/dev/ttyUSB%d", comport.number - 100) < 0) {
+            perror("asprintf");
+            exit(1);
+        }
     }
-    fdtty = open( tmp, O_RDWR | O_NOCTTY );
-    if (fdtty <0) { return(-1); }
+    fdtty = open(comport.name, O_RDWR | O_NOCTTY);
+    if (fdtty < 0) {
+        perror(comport.name);
+        return -1;
+    }
 
-    tcgetattr(fdtty,&oldtio); /* save current port settings */
+    tcgetattr(fdtty, &oldtio); /* save current port settings */
 
     bzero(&newtio, sizeof(newtio));
 
@@ -178,13 +207,13 @@ int open_comport()
     cfmakeraw(&newtio);
     newtio.c_cflag |= (CLOCAL | CREAD);
 
-            // No parity (8N1):
+    // No parity (8N1):
     newtio.c_cflag &= ~PARENB;
     newtio.c_cflag &= ~CSTOPB;
     newtio.c_cflag &= ~CSIZE;
     newtio.c_cflag |= CS8;
 
-        // disable hardware flow control
+    // disable hardware flow control
     newtio.c_cflag &= ~CRTSCTS ;
 
     newtio.c_cc[VTIME]    = 0;   /* inter-character timer unused */
@@ -194,9 +223,13 @@ int open_comport()
     tcsetattr(fdtty,TCSANOW,&newtio);
 #else
    com_port = comm_port_init(comport.number);
+   if (asprintf(&comport.name, "COM%d", comport.number) < 0) {
+      perror("asprintf");
+      exit(1);
+   }
    if (!com_port) {
       write_log(szDZCommErr);
-      comport.status = NOT_OPEN;
+      close_comport();
       return -1;
    }
    comm_port_set_baud_rate(com_port, comport.baud_rate);
@@ -207,14 +240,14 @@ int open_comport()
    if (comm_port_install_handler(com_port) != 1)
    {
       write_log(szDZCommErr);
-      comport.status = NOT_OPEN; //port was not open
+      close_comport();
       return -1; // return error
    }
 #endif
-   
+
    serial_time_out = FALSE;
    comport.status = READY;
-   
+
    return 0; // everything is okay
 }
 
@@ -229,6 +262,7 @@ void close_comport()
 #elif TERMIOS
       tcsetattr(fdtty,TCSANOW,&oldtio);
       close(fdtty);
+      fdtty = -1;
 #else
       comm_port_flush_output(com_port);
       comm_port_flush_input(com_port);
@@ -245,9 +279,9 @@ void send_command(const char *command)
 #ifdef ALLEGRO_WINDOWS
    DWORD bytes_written;
 #endif
-   
+
    sprintf(tx_buf, "%s\r", command);  // Append CR to the command
-   
+
 #ifdef ALLEGRO_WINDOWS
    PurgeComm(com_port, PURGE_TXCLEAR|PURGE_RXCLEAR);
    WriteFile(com_port, tx_buf, strlen(tx_buf), &bytes_written, 0);
@@ -260,11 +294,11 @@ void send_command(const char *command)
 //    printf("tx:'%s'\n",command);
 	if( write(fdtty,tx_buf,strlen(tx_buf)) == -1 )
 	{
-	  perror("write tty");
-	  close(fdtty);
-	  comport.status = NOT_OPEN;
-	  write_log("Error while writing to the serial COM port.\n");
-	  fdtty = -1;
+	  perror(comport.name);
+	  write_log("Error while writing to serial port ");
+      write_log(comport.name);
+      write_log("\n");
+      close_comport();
 	}
 	else
 	{
@@ -275,7 +309,7 @@ void send_command(const char *command)
    comm_port_flush_input(com_port);
    comm_port_string_send(com_port, tx_buf);
 #endif
-   
+
    write_comm_log("TX", tx_buf);
 }
 

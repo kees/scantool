@@ -84,6 +84,7 @@ extern struct COMPORT {
    int number;
    int baud_rate;
    int status;    // READY, NOT_OPEN, USER_IGNORED
+   char *name;
 } comport;
 
 #endif

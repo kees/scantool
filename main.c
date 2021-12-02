@@ -166,23 +166,22 @@ static void init()
    serial_module_init();
    write_log("OK\n");
 
-   if (comport.number >= 1000)
-      sprintf(temp_buf, "Opening PTS%i... ", comport.number - 1000);
-   else
-      sprintf(temp_buf, "Opening COM%i... ", comport.number + 1);
+   sprintf(temp_buf, "Opening comport %i... ", comport.number);
    write_log(temp_buf);
    /* try opening comport (comport.status will be set) */
    open_comport();
    switch (comport.status)
    {
       case READY:
-         write_log("OK\n");
+         write_log("OK:");
+         write_log(comport.name);
+         write_log("\n");
          break;
 
       case NOT_OPEN:
          write_log("Error!\n");
          break;
-         
+
       default:
          write_log("Unknown Status\n");
          break;
